@@ -3,12 +3,16 @@ import { Link } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import style from "./Landing.module.css";
 import { useSelector } from "react-redux";
+import Modal from "../Modal/Modal";
+import { useState } from "react";
 
 export default function Landing() {
   const user = useSelector((state) => state.user);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <div className={style.contetAll}>
+      <Modal setShow={setShowModal} show={showModal} />
       <NavBar landing={true} />
       <div className={style.content}>
         <div className={style.contentText}>
@@ -21,13 +25,12 @@ export default function Landing() {
           <Link to="/home" className={style.buttonServices}>
             Servicios
           </Link>
-
-          <Link
-            to={!user.length ? "/login" : "/createPublication"}
-            className={style.buttonPosts}
+          <button
+            onClick={() => setShowModal(true)}
+            className={style.buttonNewService}
           >
             Publicar
-          </Link>
+          </button>
         </div>
       </div>
     </div>
