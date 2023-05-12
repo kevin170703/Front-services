@@ -5,63 +5,58 @@ import { useEffect } from "react";
 import CardServices from "../CardServices/CardServices";
 import style from "./Home.module.css";
 import NavBar from "../NavBar/NavBar";
-import { useState } from "react";
+import logoInfo from "../../assets/LogoInfo.png";
 
 export default function Home() {
   const distpach = useDispatch();
-  let res = useSelector((state) => state.posts);
-
-  const [loader, setLoader] = useState(true);
+  let services = useSelector((state) => state.posts);
 
   useEffect(() => {
-    distpach(getServices()).then(setLoader(false));
+    distpach(getServices());
   }, [distpach]);
 
   return (
     <div className={style.contentAll}>
-      <div className={style.load}>
+      {/* <div className={style.load}>
         <div className={style.cortina}>
           <div className={style.wave}></div>
           <div className={style.wave2}></div>
         </div>
-      </div>
+      </div> */}
       <NavBar services={true} />
       <div className={style.content}>
-        {loader ? (
-          <div className={style.contentLoader}>
-            <svg className={style.loader} viewBox="25 25 50 50">
-              <circle
-                r="20"
-                cy="50"
-                cx="50"
-                className={style.loaderCircule}
-              ></circle>
-            </svg>
-            Cargando publicaciones
-          </div>
-        ) : (
-          <div className={style.contentPosts}>
-            {!res.length ? (
-              <h1>Lista de publicaciones vacía.</h1>
-            ) : (
-              <div>
+        <div className={style.contentPosts}>
+          {!services.length ? (
+            <div className={style.contentMessageNotServices}>
+              <h1>Aún no se publicaron servicios en la plataforma.</h1>
+              <img src={logoInfo} alt="" />
+            </div>
+          ) : (
+            <div>
+              <div className={style.filters}>
                 <select name="" id="">
-                  <option value="">hola</option>
+                  <option value="">Ubicacion</option>
+                  <option value="">Ubicacion</option>
                 </select>
-                {res.map((element, index) => (
-                  <CardServices
-                    title={element.title}
-                    servicesFor={element.nameUser}
-                    location={element.location}
-                    price={element.rangePrice}
-                    contact={element.phoneNumber}
-                    key={index}
-                  />
-                ))}
+                <select>
+                  <option value="">Tipo</option>
+                </select>
               </div>
-            )}
-          </div>
-        )}
+
+              {services.map((element, index) => (
+                <CardServices
+                  title={element.title}
+                  servicesFor={element.nameUser}
+                  location={element.location}
+                  price={element.rangePrice}
+                  contact={element.phoneNumber}
+                  type={"general"}
+                  key={index}
+                />
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
