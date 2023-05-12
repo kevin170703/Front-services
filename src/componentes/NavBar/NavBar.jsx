@@ -64,7 +64,23 @@ export default function Navbar({ landing, services }) {
             <img src={logoServices} alt="" />
             Services
           </NavLink>
-          <NavLink to="/createPublication" className={style.publishServices}>
+          <NavLink
+            className={style.publishServices}
+            onClick={() =>
+              Swal.fire({
+                icon: "info",
+                title: "debes iniciar sesion para publicar servicios",
+                confirmButtonText: "Iniciar sesion",
+                confirmButtonColor: "#7b2cbf",
+                showCancelButton: true,
+                cancelButtonText: "Hacerlo mas tarde",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  navegation("/login");
+                }
+              })
+            }
+          >
             Publicar servicios
           </NavLink>
         </div>
@@ -106,20 +122,6 @@ export default function Navbar({ landing, services }) {
                 services
                   ? { color: "#9329d0", borderColor: "#9329d0" }
                   : { color: "#fff" }
-              }
-              onClick={() =>
-                Swal.fire({
-                  icon: "info",
-                  title: "debes iniciar sesion para publicar servicios",
-                  confirmButtonText: "Iniciar sesion",
-                  confirmButtonColor: "#7b2cbf",
-                  showCancelButton: true,
-                  cancelButtonText: "Hacerlo mas tarde",
-                }).then((result) => {
-                  if (result.isConfirmed) {
-                    navegation("/login");
-                  }
-                })
               }
             >
               Registrarse
