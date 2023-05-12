@@ -9,6 +9,7 @@ import { searchName } from "../../redux/actions";
 import { useState } from "react";
 import { HiBars3, HiXMark } from "react-icons/hi2";
 import logoServices from "../../assets/LogoServices.png";
+import Modal from "../Modal/Modal";
 
 export default function Navbar({ landing, services }) {
   const user = useSelector((state) => state.user);
@@ -16,6 +17,7 @@ export default function Navbar({ landing, services }) {
   const navegation = useNavigate();
   const [nameSearch, setNameSearch] = useState("");
   const [phoneVist, setPhoneVist] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   function dataSearch(e) {
     e.preventDefault();
@@ -26,6 +28,7 @@ export default function Navbar({ landing, services }) {
 
   return (
     <div className={style.contentTotal}>
+      <Modal setShow={setShowModal} show={showModal} />
       <div className={style.buttons}>
         <HiBars3
           size="30"
@@ -66,20 +69,7 @@ export default function Navbar({ landing, services }) {
           </NavLink>
           <NavLink
             className={style.publishServices}
-            onClick={() =>
-              Swal.fire({
-                icon: "info",
-                title: "debes iniciar sesion para publicar servicios",
-                confirmButtonText: "Iniciar sesion",
-                confirmButtonColor: "#7b2cbf",
-                showCancelButton: true,
-                cancelButtonText: "Hacerlo mas tarde",
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  navegation("/login");
-                }
-              })
-            }
+            onClick={() => setShowModal(true)}
           >
             Publicar servicios
           </NavLink>
