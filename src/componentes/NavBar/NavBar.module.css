@@ -1,0 +1,180 @@
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  font-weight: bold;
+  max-width: 100%;
+  height: 80px;
+  padding: 0 7rem;
+}
+
+.navegation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 250px;
+}
+
+.inicio {
+  color: #9329d0;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.inicio img {
+  width: 30px;
+}
+
+.publishServices {
+  color: #000;
+  text-decoration: none;
+}
+
+.form {
+  background-color: transparent;
+  border: 1px solid #999;
+  border-radius: 40px;
+  padding: 0 1rem;
+  width: 200px;
+  height: 45px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.form input::placeholder {
+  color: #000;
+  font-size: 1rem;
+}
+
+.form button {
+  background-color: transparent;
+  border: none;
+  color: #000;
+}
+
+.sesionAndPosts {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  width: 280px;
+}
+
+.logoProfile {
+  margin-left: 4rem;
+  color: #fff;
+}
+
+.sesion {
+  color: #fff;
+  text-decoration: none;
+}
+
+.registerButton {
+  font-weight: bold;
+  color: #fff;
+  font-size: 1rem;
+  border: 1px solid #fff;
+  background: transparent;
+  padding: 0.8rem 1rem;
+  border-radius: 40px;
+  cursor: pointer;
+}
+
+.navegationSec {
+  display: none;
+  justify-content: space-between;
+  width: 180px;
+}
+
+.butonMenu {
+  visibility: hidden;
+}
+
+.buttons {
+  display: none;
+}
+
+.newPost {
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  .content {
+    display: none;
+  }
+  .buttons {
+    display: flex;
+  }
+
+  .contentNone {
+    display: flex;
+    width: 100%;
+    height: 150px;
+    z-index: 1;
+    position: fixed;
+    flex-wrap: wrap;
+    height: 100vh;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+  }
+
+  .navegationSec {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    margin: 1rem 0;
+  }
+
+  .navegation {
+    display: none;
+  }
+
+  .butonMenu {
+    visibility: visible;
+    position: absolute;
+    z-index: 2;
+    top: 10px;
+    left: 10px;
+    color: #fff;
+  }
+
+  .butonMenuNone {
+    display: none;
+  }
+
+  .searchBar {
+    width: 150px;
+  }
+
+  .searchBar input {
+    width: 80%;
+    font-size: 0.7rem;
+  }
+
+  .sesionAndPosts {
+    width: 80%;
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
+
+  .sesion {
+    margin-bottom: 1rem;
+  }
+
+  .logoProfile {
+    margin: 1rem 0;
+    color: #fff;
+  }
+}
