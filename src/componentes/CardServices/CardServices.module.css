@@ -1,22 +1,31 @@
 .content {
-  width: 500px;
+  width: 520px;
   min-height: 100px;
   display: flex;
   padding: 1rem;
   box-shadow: 0px 0px 20px #999;
   border-radius: 10px;
   margin-bottom: 30px;
-  background: rgb(228, 216, 238);
-  background: linear-gradient(
-    59deg,
-    rgba(228, 216, 238, 1) 0%,
-    rgba(228, 216, 238, 1) 100%
-  );
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.typeColor {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: absolute;
+  top: -10px;
+  left: -10px;
 }
 
 .contentInfo {
   width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .title {
@@ -37,25 +46,20 @@
   align-items: center;
 }
 
-.contentContacts p {
-  display: flex;
-  width: 100px;
-  justify-content: space-around;
-}
-.money {
-  color: #fff;
-  filter: drop-shadow(0 0 1px #2b9348);
+.price {
+  text-align: end;
+  width: 90%;
 }
 
 .contanct {
-  background-color: #7b2cbf;
-  border: none;
-  padding: 0.8rem;
-  color: #fff;
-  border-radius: 40px;
+  border: 1px solid #9329d0;
+  color: #9329d0;
+  border-radius: 30px;
   font-size: 1.2rem;
-  width: 150px;
+  width: 120px;
+  padding: 0.5rem 1rem;
   text-decoration: none;
+  text-align: center;
   cursor: pointer;
 }
 

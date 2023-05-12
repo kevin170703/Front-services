@@ -12,8 +12,14 @@ export default function CardServices({
   price,
   id,
   delate,
+  type,
 }) {
   const dispatch = useDispatch();
+  const typeColor = {
+    insideHome: "#029CF5",
+    outsideHome: "#4FC45D",
+    general: "#E47E5E",
+  };
 
   function handelDelatePost() {
     dispatch(delatePost({ idPost: id }));
@@ -23,16 +29,21 @@ export default function CardServices({
   }
   return (
     <div className={style.content}>
+      <div
+        className={style.typeColor}
+        style={{ background: typeColor[type] }}
+      ></div>
       <div className={style.contentInfo}>
         <h5 className={style.title}>{title}</h5>
-        <p>servico brindado por: {servicesFor}</p>
-        <p>{location}</p>
+        <p>
+          <b>Por </b>
+          {servicesFor}
+          <b> en </b>
+          {location}
+        </p>
       </div>
       <div className={style.contentContacts}>
-        <p>
-          {<FaMoneyBillWave size="20" className={style.money} />}
-          {price}
-        </p>
+        <p className={style.price}>${price}</p>
         {!delate ? (
           <a
             href={`https://wa.me/${contact}`}
