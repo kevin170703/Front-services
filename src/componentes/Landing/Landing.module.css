@@ -17,6 +17,20 @@
   height: 200px;
   border-radius: 50%;
   z-index: -1;
+  animation: scale-up-top-left 0.7s 0.5s forwards;
+  opacity: 0;
+}
+
+@keyframes scale-up-top-left {
+  0% {
+    transform: scale(0.5);
+    transform-origin: top left;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    transform-origin: top left;
+  }
 }
 
 .backgroundCirclePrincipal {
@@ -27,6 +41,18 @@
   width: 120%;
   height: 150%;
   border-radius: 50%;
+  animation: scale-up-bottom 0.5s;
+}
+
+@keyframes scale-up-bottom {
+  0% {
+    transform: scale(0.5);
+    transform-origin: center bottom;
+  }
+  100% {
+    transform: scale(1);
+    transform-origin: center bottom;
+  }
 }
 
 .content {
@@ -54,6 +80,22 @@
   font-weight: bold;
   margin: 2rem 0 0 0;
   color: #333;
+  animation: tracking-in-expand-forward-top 0.4s linear both 0.5s;
+}
+
+@keyframes tracking-in-expand-forward-top {
+  0% {
+    letter-spacing: -0.2em;
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .contentText h5 {
@@ -61,6 +103,21 @@
   color: #607d8b;
   margin: 0;
   font-weight: 100;
+  animation: tracking-in-expand-forward-bottom 0.4s linear both 0.7s;
+}
+
+@keyframes tracking-in-expand-forward-bottom {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .buttonServices {
