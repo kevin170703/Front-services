@@ -17,7 +17,8 @@
 }
 
 .inicio {
-  color: #9329d0;
+  color: #03dac5;
+  font-size: 1.2rem;
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -28,7 +29,7 @@
 }
 
 .publishServices {
-  color: #000;
+  color: #333;
   text-decoration: none;
 }
 
@@ -68,20 +69,20 @@
 
 .logoProfile {
   margin-left: 4rem;
-  color: #fff;
+  color: #333;
 }
 
 .sesion {
-  color: #fff;
+  color: #333;
   text-decoration: none;
 }
 
 .registerButton {
   font-weight: bold;
   color: #fff;
+  background: #ff4081;
   font-size: 1rem;
-  border: 1px solid #fff;
-  background: transparent;
+  border: none;
   padding: 0.8rem 1rem;
   border-radius: 40px;
   cursor: pointer;

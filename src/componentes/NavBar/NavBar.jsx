@@ -64,7 +64,6 @@ export default function Navbar({ landing, services }) {
       <div className={phoneVist === true ? style.contentNone : style.content}>
         <div className={style.navegation}>
           <NavLink to="/" className={style.inicio}>
-            <img src={logoServices} alt="" />
             Services
           </NavLink>
           <NavLink
@@ -91,7 +90,7 @@ export default function Navbar({ landing, services }) {
             <NavLink
               to="/login"
               className={style.sesion}
-              style={services ? { color: "#000" } : { color: "#fff" }}
+              style={services ? { color: "#000" } : { color: "#333" }}
             >
               Iniciar sesion
             </NavLink>
