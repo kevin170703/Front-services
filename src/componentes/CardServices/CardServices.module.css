@@ -10,6 +10,7 @@
   box-shadow: 0 0 60px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .typeColor {
@@ -52,8 +53,9 @@
 }
 
 .contanct {
-  border: 1px solid #9329d0;
-  color: #9329d0;
+  color: #fff;
+  background-color: #ff4081;
+  box-shadow: 0 5px 10px rgb(255, 64, 129, 0.25);
   border-radius: 30px;
   font-size: 1.2rem;
   width: 120px;
