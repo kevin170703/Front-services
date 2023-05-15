@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import style from "./NavBar.module.css";
 import { CiSearch } from "react-icons/ci";
 import { IoPersonOutline } from "react-icons/io5";
@@ -87,34 +87,18 @@ export default function Navbar({ landing, services }) {
 
         <div className={style.sesionAndPosts}>
           {user[0]?.msj || !user.length ? (
-            <NavLink
-              to="/login"
-              className={style.sesion}
-              style={services ? { color: "#000" } : { color: "#333" }}
-            >
+            <NavLink to="/login" className={style.sesion}>
               Iniciar sesion
             </NavLink>
           ) : (
             <NavLink to="/profile">
-              <IoPersonOutline
-                size="30"
-                className={style.logoProfile}
-                style={services ? { color: "#000" } : { color: "#fff" }}
-              />
+              <IoPersonOutline size="30" className={style.logoProfile} />
             </NavLink>
           )}
           {!user.length && (
-            <button
-              // to="/createPublic"
-              className={style.registerButton}
-              style={
-                services
-                  ? { color: "#9329d0", borderColor: "#9329d0" }
-                  : { color: "#fff" }
-              }
-            >
+            <Link to="/register" className={style.registerButton}>
               Registrarse
-            </button>
+            </Link>
           )}
         </div>
       </div>
