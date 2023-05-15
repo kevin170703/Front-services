@@ -14,23 +14,15 @@ export default function Landing() {
     <div className={style.contetAll}>
       <Modal setShow={setShowModal} show={showModal} />
       <NavBar landing={true} />
+      <div className={style.backgroundCircleSecundary}></div>
+      <div className={style.backgroundCirclePrincipal}></div>
       <div className={style.content}>
         <div className={style.contentText}>
-          <h1>
-            <span>services</span> para encontrar y publicar
-          </h1>
-          <h5>Servicios</h5>
-        </div>
-        <div>
+          <h1>Services</h1>
+          <h5>Conectando Personas y Servicios</h5>
           <Link to="/home" className={style.buttonServices}>
             Servicios
           </Link>
-          <button
-            onClick={() => setShowModal(true)}
-            className={style.buttonNewService}
-          >
-            Publicar
-          </button>
         </div>
       </div>
     </div>
