@@ -6,6 +6,7 @@
   backdrop-filter: brightness(40%);
   align-items: center;
   justify-content: center;
+  z-index: 100;
 }
 
 .toaster {
@@ -48,24 +49,25 @@
 
 .buttonLogin {
   text-decoration: none;
-  color: #000;
-  background: transparent;
+  color: #fff;
+  background: #03dac5;
   border: none;
   border-radius: 30px;
   padding: 0.5rem 1rem;
-  border: 1px solid #999;
   margin-bottom: 1rem;
+  font-weight: bold;
   transition: ease-in-out 0.2s;
 }
 
 .buttonRegister {
   text-decoration: none;
   color: #fff;
-  background: #9329d0;
+  background: #ff4081;
   border: none;
   border-radius: 30px;
   padding: 0.5rem 1rem;
   margin-bottom: 1rem;
+  font-weight: bold;
   transition: ease-in-out 0.2s;
 }
 
