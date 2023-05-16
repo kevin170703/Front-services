@@ -88,6 +88,16 @@
   padding-left: 1rem;
 }
 
+.contentInputs select {
+  background: transparent;
+  width: 340px;
+  height: 45px;
+  border: 1px solid #d3d0d0;
+  border-radius: 30px;
+  outline: none;
+  padding-left: 1rem;
+}
+
 .contentInputPassword {
   display: flex;
   flex-direction: column;
