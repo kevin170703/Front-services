@@ -1,17 +1,45 @@
 .contentAll {
   text-align: start;
-  background: rgb(123, 44, 191);
-  background: linear-gradient(
-    235deg,
-    rgba(123, 44, 191, 0.3589635683374912) 0%,
-    rgba(123, 44, 191, 0.8799719716988358) 65%
-  );
+  background-color: #fafafa;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
 }
+
+.backgroundCircle {
+  width: 60%;
+  top: -10%;
+  right: -15%;
+  height: 130%;
+  border-radius: 50%;
+  background-color: #03dac5;
+  position: absolute;
+  box-shadow: -20px 0 40px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.backgroundCircle h2 {
+  color: #fff;
+  font-size: 4rem;
+  margin: -10rem 0 0 -10rem;
+}
+
+.backgroundCircle p {
+  font-size: 2rem;
+  margin: 0 0 0 -10rem;
+  color: #fff;
+}
+
 .content {
   height: 100vh;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   padding: 0 10rem;
+  animation: aparecer 1.5s ease;
 }
 
 .back {
@@ -19,56 +47,78 @@
   position: absolute;
   top: 0;
   left: 0;
-}
-
-.inputs {
-  height: 80%;
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  animation: aparecer 2s ease;
+  color: #333;
 }
 
 @keyframes aparecer {
   from {
-    transform: translateY(50%);
+    opacity: 0;
+    transform: scale(0.9);
   }
   to {
     opacity: 1;
   }
 }
 
+.inputs {
+  height: max-content;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .contentInputs {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   width: max-content;
-  margin-top: 1rem;
-}
-.contentInputs label {
-  font-size: 1.4rem;
-  color: #ddd;
+  height: 70px;
 }
 
-.contentInputs input {
-  width: 280px;
+.contentInputs input,
+.contentInputPassword input {
   background: transparent;
-  border: none;
-  border-bottom: 1px solid #fff;
+  width: 320px;
   height: 40px;
+  border: 1px solid #d3d0d0;
+  border-radius: 30px;
   outline: none;
-  color: #fff;
+  padding-left: 1rem;
 }
 
-.create {
-  background: rgb(123, 44, 191);
-  background: linear-gradient(
-    90deg,
-    rgba(123, 44, 191, 0.5438375179173232) 0%,
-    rgba(123, 44, 191, 1) 48%
-  );
+.contentInputPassword {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+  height: 80px;
+}
+
+.contentInputs input::placeholder,
+.contentInputPassword input::placeholder {
+  font-size: 1rem;
+}
+
+.contentInputs input:focus,
+.contentInputPassword input::placeholder {
+  border: 1px solid #03dac5;
+}
+
+.errors {
+  color: red;
+  margin: 0;
+  font-size: 0.9rem;
+  width: 100%;
+  text-align: start;
+}
+.errors p {
+  margin: 0;
+}
+
+.buttonCreateAccount {
+  background: #03dac5;
   color: #fff;
   cursor: pointer;
   text-decoration: none;
@@ -79,41 +129,8 @@
   font-size: 1.2rem;
 }
 
-.createNone {
-  background-color: #999;
-  cursor: not-allowed;
-  pointer-events: none;
-  color: #fff;
-  text-decoration: none;
-  padding: 1rem;
-  border-radius: 40px;
-  margin-top: 1rem;
-  border: none;
-  font-size: 1.2rem;
-}
-
-.errors {
-  color: red;
-  margin: 0 0 0 0.2rem;
-  font-size: 0.9rem;
-}
-
-.fondo {
-  width: 50%;
-  animation: fondo 2s ease;
-}
-
-@keyframes fondo {
-  from {
-    transform: translateX(50%);
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.fondo img {
-  width: 600px;
+.buttonCreateAccount:disabled {
+  background: #85cfc7;
 }
 
 @media (max-width: 600px) {

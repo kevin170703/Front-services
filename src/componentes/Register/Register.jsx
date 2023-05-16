@@ -1,76 +1,33 @@
 import React from "react";
 import style from "./Register.module.css";
 import fondo from "../../assets/undraw_text_field_htlv.svg";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { createAccount } from "../../redux/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { BiLeftArrowAlt } from "react-icons/bi";
+import { useValidateErrors } from "../../assets/hooks/useValidateForm";
 import Swal from "sweetalert2";
 
 export default function Register() {
   const dispatch = useDispatch();
-  const navegate = useNavigate();
+  const { validateErrors, errors } = useValidateErrors();
   const [dataRegister, setDataRegister] = useState({
     name: "",
     lastName: "",
     password: "",
-    phoneNumber: "",
+    email: "",
     location: "",
   });
-  const [error, setError] = useState({});
 
-  const codigos = [];
   function handelLoginData(e) {
     e.preventDefault();
     setDataRegister({ ...dataRegister, [e.target.name]: e.target.value });
-    setError(validate({ ...dataRegister, [e.target.name]: e.target.value }));
+    validateErrors({ ...dataRegister, [e.target.name]: e.target.value });
   }
 
-  function validate() {
-    let error = {};
-    if (dataRegister.name === "") error.name = "Debes ingresar tu nombre";
-    else if (!/^[A-Z]+$/i.test(dataRegister.name))
-      error.name = "Ingrese un nombre valido";
-
-    if (!dataRegister.lastName) error.lastName = "Debes ingresar tu apellido";
-    else if (!/^[A-Z]+$/i.test(dataRegister.lastName))
-      error.lastName = "Ingrese un apellido valido";
-
-    if (!dataRegister.password)
-      error.password = "Debes ingresar una constaraseña";
-    else if (dataRegister.password.length < 8)
-      error.password = "La contraseña debe tener minimo 8 caracteres";
-
-    if (!dataRegister.phoneNumber)
-      error.phoneNumber = "Debes ingresar tu numero de telefono";
-    else if (isNaN(dataRegister.phoneNumber))
-      error.phoneNumber = "Solo se permiten numeros";
-    else if (dataRegister.phoneNumber.length < 9)
-      error.phoneNumber = "Debe ingresar un numero correcto";
-
-    if (!dataRegister.location)
-      error.location = "Debes ingresar la cuidad en donde vivas";
-    else if (!/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(dataRegister.location))
-      error.location = "Ingrese una cuidad valido";
-    return error;
-  }
-
-  function handaelCrateAccount(e) {
+  function sendDataUser(e) {
     e.preventDefault();
-    if (
-      !dataRegister.name ||
-      !dataRegister.lastName ||
-      !dataRegister.password ||
-      !dataRegister.phoneNumber ||
-      !dataRegister.location
-    ) {
-      return Swal.fire({
-        icon: "error",
-        title: "Le falta completar los campos",
-        width: "600",
-      });
-    }
     dispatch(createAccount(dataRegister));
     setDataRegister({
       name: "",
@@ -86,78 +43,77 @@ export default function Register() {
       <NavLink to="/">
         <BiLeftArrowAlt size="40" className={style.back} />
       </NavLink>
+      <div className={style.backgroundCircle}>
+        <h2>Services</h2>
+        <p>Conectando Personas y Servicios</p>
+      </div>
       <div className={style.content}>
-        <form className={style.inputs} onSubmit={(e) => handaelCrateAccount(e)}>
+        <form className={style.inputs} onSubmit={(e) => sendDataUser(e)}>
+          <h1>Registrate</h1>
           <div className={style.contentInputs}>
-            <label>Nombre</label>
             <input
               type="text"
               name="name"
+              placeholder="Nombre"
               value={dataRegister.name}
               onChange={(e) => handelLoginData(e)}
             />
-            {error.name && <p className={style.errors}>{error.name}</p>}
+            {errors.name && <p className={style.errors}>{errors.name}</p>}
           </div>
           <div className={style.contentInputs}>
-            <label>Apellido</label>
             <input
               type="text"
               name="lastName"
+              placeholder="Apellido"
               value={dataRegister.lastName}
               onChange={(e) => handelLoginData(e)}
             />
-            {error.lastName && <p className={style.errors}>{error.lastName}</p>}
-          </div>
-          <div className={style.contentInputs}>
-            <label>Numero de telefono</label>
-            <input
-              type="text"
-              name="phoneNumber"
-              value={dataRegister.phoneNumber}
-              onChange={(e) => handelLoginData(e)}
-            />
-            {error.phoneNumber && (
-              <p className={style.errors}>{error.phoneNumber}</p>
+            {errors.lastName && (
+              <p className={style.errors}>{errors.lastName}</p>
             )}
           </div>
           <div className={style.contentInputs}>
-            <label>Ciudad</label>
+            <input
+              type="text"
+              name="email"
+              placeholder="Correo electrinico"
+              value={dataRegister.email}
+              onChange={(e) => handelLoginData(e)}
+            />
+            {errors.email && <p className={style.errors}>{errors.email}</p>}
+          </div>
+          <div className={style.contentInputs}>
             <input
               type="text"
               name="location"
+              placeholder="Ubicacion"
               value={dataRegister.location}
               onChange={(e) => handelLoginData(e)}
             />
-            {error.location && <p className={style.errors}>{error.location}</p>}
+            {errors.location && (
+              <p className={style.errors}>{errors.location}</p>
+            )}
           </div>
-          <div className={style.contentInputs}>
-            <label>Contraseña</label>
+          <div className={style.contentInputPassword}>
             <input
               type="password"
               name="password"
+              placeholder="Contraseña"
               value={dataRegister.password}
               onChange={(e) => handelLoginData(e)}
             />
-            {error.password && <p className={style.errors}>{error.password}</p>}
+            {errors.password && (
+              <p className={style.errors}>{errors.password}</p>
+            )}
           </div>
           <button
             type="submit"
-            className={
-              !error.name &&
-              !error.lastName &&
-              !error.password &&
-              !error.phoneNumber &&
-              dataRegister.name
-                ? style.create
-                : style.createNone
-            }
+            className={style.buttonCreateAccount}
+            disabled={errors.exist}
           >
             Crear cuenta
           </button>
         </form>
-        <div className={style.fondo}>
-          <img src={fondo} alt="" />
-        </div>
       </div>
     </div>
   );
