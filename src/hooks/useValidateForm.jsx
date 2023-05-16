@@ -6,6 +6,7 @@ export function useValidateErrors() {
   const isFirstInputName = useRef(true);
   const isFirstInputLastName = useRef(true);
   const isFirstInputEmail = useRef(true);
+  const isFirstInputLocation = useRef(true);
   const isFirstInputPassword = useRef(true);
 
   function validateErrors(dataUser) {
@@ -42,6 +43,10 @@ export function useValidateErrors() {
       errors.email = "Debe ingresar su correo";
     } else if (!emailRegex.test(email)) {
       errors.email = "Email invalido";
+    }
+
+    if (!location) {
+      errors.exist = true;
     }
 
     if (isFirstInputPassword.current) {
