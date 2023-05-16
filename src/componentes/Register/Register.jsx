@@ -6,7 +6,7 @@ import { useState } from "react";
 import { createAccount } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import { BiLeftArrowAlt } from "react-icons/bi";
-import { useValidateErrors } from "../../assets/hooks/useValidateForm";
+import { useValidateErrors } from "../../hooks/useValidateForm";
 import Swal from "sweetalert2";
 
 export default function Register() {
