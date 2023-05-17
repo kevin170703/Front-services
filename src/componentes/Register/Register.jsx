@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { createAccount } from "../../redux/actions";
 import { useDispatch } from "react-redux";
-import { BiLeftArrowAlt } from "react-icons/bi";
+import { CiCircleChevLeft } from "react-icons/ci";
 import { useValidateErrors } from "../../hooks/useValidateForm";
 
 export default function Register() {
@@ -3053,7 +3053,7 @@ export default function Register() {
   return (
     <div className={style.contentAll}>
       <NavLink to="/">
-        <BiLeftArrowAlt size="40" className={style.back} />
+        <CiCircleChevLeft size="40" className={style.back} />
       </NavLink>
       <div className={style.backgroundCircle}>
         <h2>Services</h2>
