@@ -65,5 +65,43 @@ export function useValidateErrors() {
     setErrors({ ...errors, exist: Object.keys(errors).length > 0 });
   }
 
-  return { validateErrors, errors };
+  function validateErrosNewService(dataServices) {
+    let errors = {};
+    const {
+      phoneNumber,
+      codePhoneNumber,
+      location,
+      rangePriceOne,
+      rangePriceTwo,
+      title,
+    } = dataServices;
+
+    if (!phoneNumber)
+      errors.phoneNumber = "Debes ingresar tu numero de telefono";
+    else if (isNaN(phoneNumber))
+      errors.phoneNumber = "Solo se permiten numeros";
+    else if (phoneNumber.length < 9)
+      errors.phoneNumber = "Debe ingresar un numero correcto";
+
+    if (!codePhoneNumber) errors.phoneNumber = "Debes ingresar su pais";
+
+    if (!location) errors.location = "Ingresar la cuidad";
+    else if (!/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(location))
+      errors.location = "Ingrese una cuidad valido";
+
+    if (!rangePriceOne || !rangePriceOne)
+      errors.rangePrice = "Debes ingresar el rago de precios";
+    else if (isNaN(rangePriceOne) || isNaN(rangePriceTwo))
+      errors.rangePrice = "Solo se permiten numeros";
+
+    if (title === "")
+      errors.title = "Debes ingresar el titulo de tu publicacion";
+    else if (title.length > 25) errors.title = "Maximo 26 caracteres";
+    else if (!/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(title))
+      errors.title = "Ingrese un titulo valido";
+
+    setErrors(errors);
+  }
+
+  return { validateErrors, validateErrosNewService, errors };
 }
