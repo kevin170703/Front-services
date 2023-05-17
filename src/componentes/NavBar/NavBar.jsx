@@ -2,19 +2,16 @@ import React from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import style from "./NavBar.module.css";
 import { CiSearch } from "react-icons/ci";
-import { IoPersonOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
-import Swal from "sweetalert2";
 import { searchName } from "../../redux/actions";
 import { useState } from "react";
 import { HiBars3, HiXMark } from "react-icons/hi2";
-import logoServices from "../../assets/LogoServices.png";
 import Modal from "../Modal/Modal";
+import { CiUser } from "react-icons/ci";
 
 export default function Navbar({ landing, services }) {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const navegation = useNavigate();
   const [nameSearch, setNameSearch] = useState("");
   const [phoneVist, setPhoneVist] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -66,12 +63,18 @@ export default function Navbar({ landing, services }) {
           <NavLink to="/" className={style.inicio}>
             Services
           </NavLink>
-          <NavLink
-            className={style.publishServices}
-            onClick={() => setShowModal(true)}
-          >
-            Publicar servicios
-          </NavLink>
+          {!user.length ? (
+            <NavLink
+              className={style.publishServices}
+              onClick={() => setShowModal(true)}
+            >
+              Publicar servicios
+            </NavLink>
+          ) : (
+            <NavLink className={style.publishServices} to="/createPublication">
+              Publicar servicios
+            </NavLink>
+          )}
         </div>
         {services && (
           <form className={style.form} onSubmit={(e) => dataSearch(e)}>
@@ -92,7 +95,7 @@ export default function Navbar({ landing, services }) {
             </NavLink>
           ) : (
             <NavLink to="/profile">
-              <IoPersonOutline size="30" className={style.logoProfile} />
+              <CiUser size="35" className={style.logoProfile} />
             </NavLink>
           )}
           {!user.length && (
