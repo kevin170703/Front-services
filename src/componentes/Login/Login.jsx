@@ -4,12 +4,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { login } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { BiLeftArrowAlt } from "react-icons/bi";
+import { CiCircleChevLeft } from "react-icons/ci";
 
 export default function Login() {
   const user = useSelector((state) => state.user);
   const distpach = useDispatch();
-  const navegation = useNavigate();
   const [loginData, setLoginData] = useState({ password: "", phoneNumber: "" });
 
   function handelLoginData(e) {
@@ -26,7 +25,7 @@ export default function Login() {
   return (
     <div className={style.contentAll}>
       <NavLink to="/">
-        <BiLeftArrowAlt size="40" className={style.back} />
+        <CiCircleChevLeft size="40" className={style.back} />
       </NavLink>
       <div className={style.backgroundCircle}>
         <h2>Services</h2>
