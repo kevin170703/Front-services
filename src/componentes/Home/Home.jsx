@@ -5,8 +5,8 @@ import { useEffect } from "react";
 import CardServices from "../CardServices/CardServices";
 import style from "./Home.module.css";
 import NavBar from "../NavBar/NavBar";
-import logoInfo from "../../assets/LogoInfo.png";
 import DetailService from "../DetailService/DetailService";
+import { CiCircleAlert } from "react-icons/ci";
 
 export default function Home() {
   const distpach = useDispatch();
@@ -25,7 +25,7 @@ export default function Home() {
           {!services.length ? (
             <div className={style.contentMessageNotServices}>
               <h1>Aún no se publicaron servicios en la plataforma.</h1>
-              <img src={logoInfo} alt="" />
+              <CiCircleAlert className={style.logoInterrogation} size="120" />
             </div>
           ) : (
             <div>

@@ -43,6 +43,10 @@
   height: 80vh;
 }
 
+.logoInterrogation {
+  color: #03dac5;
+}
+
 @media (max-width: 600px) {
   .content {
     padding: 0;
