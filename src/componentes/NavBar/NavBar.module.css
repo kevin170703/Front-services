@@ -89,33 +89,24 @@
   cursor: pointer;
 }
 
-.navegationSec {
-  display: none;
-  justify-content: space-between;
-  width: 180px;
-}
-
-.butonMenu {
-  visibility: hidden;
-}
-
-.buttons {
-  display: none;
-}
-
 .newPost {
   text-decoration: none;
+}
+
+.buttonsMenu {
+  display: none;
 }
 
 @media (max-width: 600px) {
   .content {
     display: none;
   }
-  .buttons {
+
+  .buttonsMenu {
     display: flex;
   }
 
-  .contentNone {
+  .contentVistPhone {
     display: flex;
     width: 100%;
     height: 150px;
@@ -150,10 +141,6 @@
     top: 10px;
     left: 10px;
     color: #fff;
-  }
-
-  .butonMenuNone {
-    display: none;
   }
 
   .searchBar {

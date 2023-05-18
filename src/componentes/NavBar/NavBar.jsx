@@ -13,56 +13,43 @@ export default function Navbar({ landing, services }) {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [nameSearch, setNameSearch] = useState("");
-  const [phoneVist, setPhoneVist] = useState(false);
+  const [showMenuPhone, setShowMenuPhone] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   function dataSearch(e) {
     e.preventDefault();
     dispatch(searchName(nameSearch));
     setNameSearch("");
-    setPhoneVist(false);
+    setShowMenuPhone(false);
   }
 
   return (
     <div className={style.contentTotal}>
       <Modal setShow={setShowModal} show={showModal} />
-      <div className={style.buttons}>
+      <div className={style.buttonsMenu}>
         <HiBars3
           size="30"
-          className={phoneVist === true ? style.butonMenuNone : style.butonMenu}
-          onClick={() => setPhoneVist(true)}
+          className={style.butonMenu}
+          style={{ display: showMenuPhone ? "none" : "flex" }}
+          onClick={() => setShowMenuPhone(true)}
         />
 
         <HiXMark
           size="30"
-          className={
-            phoneVist === false ? style.butonMenuNone : style.butonMenu
-          }
-          onClick={() => setPhoneVist(false)}
+          className={style.butonMenu}
+          style={{ display: showMenuPhone ? "flex" : "none" }}
+          onClick={() => setShowMenuPhone(false)}
         />
-      </div>
-      <div className={style.navegationSec}>
-        <NavLink
-          to="/"
-          className={landing === true ? style.border : style.inicio}
-        >
-          inicio
-        </NavLink>
-        <NavLink
-          to="/home"
-          className={services === true ? style.border : style.service}
-        >
-          Buscar servicios
-        </NavLink>
       </div>
 
       {/* ------------------------------------------- */}
 
-      <div className={phoneVist === true ? style.contentNone : style.content}>
+      <div className={showMenuPhone ? style.contentVistPhone : style.content}>
         <div className={style.navegation}>
           <NavLink to="/" className={style.inicio}>
             Services
           </NavLink>
+
           {!user.length ? (
             <NavLink
               className={style.publishServices}
@@ -76,6 +63,7 @@ export default function Navbar({ landing, services }) {
             </NavLink>
           )}
         </div>
+
         {services && (
           <form className={style.form} onSubmit={(e) => dataSearch(e)}>
             <input
@@ -88,22 +76,20 @@ export default function Navbar({ landing, services }) {
           </form>
         )}
 
-        <div className={style.sesionAndPosts}>
-          {user[0]?.msj || !user.length ? (
+        {!user.length ? (
+          <div className={style.sesionAndPosts}>
             <NavLink to="/login" className={style.sesion}>
               Iniciar sesion
             </NavLink>
-          ) : (
-            <NavLink to="/profile">
-              <CiUser size="35" className={style.logoProfile} />
-            </NavLink>
-          )}
-          {!user.length && (
             <Link to="/register" className={style.registerButton}>
               Registrarse
             </Link>
-          )}
-        </div>
+          </div>
+        ) : (
+          <NavLink to="/profile">
+            <CiUser size="40" className={style.logoProfile} />
+          </NavLink>
+        )}
       </div>
     </div>
   );
