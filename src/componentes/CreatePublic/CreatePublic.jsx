@@ -1,6 +1,5 @@
 import React from "react";
 import style from "./CreatePublic.module.css";
-import fondo from "../../assets/undraw_resume_re_hkth.svg";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,8 +8,12 @@ import { CiCircleChevLeft } from "react-icons/ci";
 import Swal from "sweetalert2";
 import { useValidateErrors } from "../../hooks/useValidateForm";
 
+import cities from "../../assets/cities.json";
+import countries from "../../assets/countries.json";
+import states from "../../assets/states.json";
+
 export default function CreatePublic() {
-  const paises = [
+  const codesCountries = [
     {
       name_en: "Afghanistan",
       name_es: "Afganistán",
@@ -3024,6 +3027,18 @@ export default function CreatePublic() {
       tld: ".zw",
     },
   ];
+  const [infoOfLocation, setInfoOfLocation] = useState({
+    county: "",
+    state: "",
+    city: "",
+  });
+  const filterStates = states.filter(
+    (state) => state.id_country == infoOfLocation.county.id
+  );
+  const filterCityes = cities.filter(
+    (city) => city.id_state == infoOfLocation.state.id
+  );
+
   const { validateErrosNewService, errors } = useValidateErrors();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -3037,35 +3052,6 @@ export default function CreatePublic() {
     codePhoneNumber: "",
     phoneNumber: "",
   });
-
-  // function validate(dataForm) {
-  //   let error = {};
-  //   if (!dataForm.phoneNumber)
-  //     error.phoneNumber = "Debes ingresar tu numero de telefono";
-  //   else if (isNaN(dataForm.phoneNumber))
-  //     error.phoneNumber = "Solo se permiten numeros";
-  //   else if (dataForm.phoneNumber.length < 9)
-  //     error.phoneNumber = "Debe ingresar un numero correcto";
-
-  //   if (!dataForm.codePhoneNumber) error.phoneNumber = "Debes ingresar su pais";
-
-  //   if (!dataForm.location) error.location = "Ingresar la cuidad";
-  //   else if (!/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(dataForm.location))
-  //     error.location = "Ingrese una cuidad valido";
-
-  //   if (!dataForm.rangePriceOne || !dataForm.rangePriceOne)
-  //     error.rangePrice = "Debes ingresar el rago de precios";
-  //   else if (isNaN(dataForm.rangePriceOne) || isNaN(dataForm.rangePriceTwo))
-  //     error.rangePrice = "Solo se permiten numeros";
-
-  //   if (dataForm.title === "")
-  //     error.title = "Debes ingresar el titulo de tu publicacion";
-  //   else if (dataForm.title.length > 25) error.title = "Maximo 26 caracteres";
-  //   else if (!/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(dataForm.title))
-  //     error.title = "Ingrese un titulo valido";
-
-  //   return error;
-  // }
 
   function handelData(e) {
     e.preventDefault();
@@ -3105,38 +3091,28 @@ export default function CreatePublic() {
 
   return (
     <div className={style.contentAll}>
-      <div className={style.backgroundCircle}>
-        <NavLink to="/">
-          <CiCircleChevLeft size="40" className={style.back} />
-        </NavLink>
-      </div>
+      <div className={style.backgroundCircle}></div>
+      <div className={style.backgroundCircleSecundary}></div>
+      <NavLink to="/">
+        <CiCircleChevLeft size="40" className={style.back} />
+      </NavLink>
       <div className={style.content}>
         <form action="" onSubmit={(e) => handelsubmit(e)}>
-          <div className={style.contentInputs}>
+          <div className={style.contentInputTitle}>
+            <label htmlFor="">Titulo del servicio</label>
             <input
               type="text"
               name="title"
-              placeholder="Titulo"
+              placeholder="Capintero, plomero..."
               className={style.inputs}
               value={dataForm.title}
               onChange={(e) => handelData(e)}
             />
             {errors.title && <p className={style.errors}>{errors.title}</p>}
           </div>
-          <div className={style.contentInputs}>
-            <input
-              type="text"
-              name="location"
-              placeholder="Ubicacion donde ofreces este servicio"
-              className={style.inputs}
-              value={dataForm.location}
-              onChange={(e) => handelData(e)}
-            />
-            {errors.location && (
-              <p className={style.errors}>{errors.location}</p>
-            )}
-          </div>
-          <div className={style.contentInputs}>
+
+          <div className={style.contentInputsRangePrice}>
+            <label htmlFor="">Rango de precio</label>
             <div className={style.rangePrice}>
               <input
                 type="text"
@@ -3160,31 +3136,35 @@ export default function CreatePublic() {
               <p className={style.errors}>{errors.rangePrice}</p>
             )}
           </div>
-          <div className={style.contentInputsPhoneNumber}>
-            <select
-              className={style.inputCountries}
-              onChange={(e) => handelCodeNumber(e)}
-            >
-              {paises.map((element, index) => (
-                <option
-                  key={index}
-                  value={element.dial_code}
-                >{`${element.name_es} (+${element.dial_code})`}</option>
-              ))}
-            </select>
+          <div>
+            <label htmlFor="">Telefono de contacto</label>
+            <div className={style.contentInputsPhoneNumber}>
+              <select
+                className={style.inputPhoneCode}
+                onChange={(e) => handelCodeNumber(e)}
+              >
+                {codesCountries.map((element, index) => (
+                  <option
+                    key={index}
+                    value={element.dial_code}
+                  >{`${element.name_es} (+${element.dial_code})`}</option>
+                ))}
+              </select>
 
-            <input
-              type="text"
-              name="phoneNumber"
-              placeholder="Numero de telefono"
-              className={style.inputPhoneNumber}
-              value={dataForm.phoneNumber}
-              onChange={(e) => handelData(e)}
-            />
+              <input
+                type="text"
+                name="phoneNumber"
+                placeholder="xx-xxxx"
+                className={style.inputPhoneNumber}
+                value={dataForm.phoneNumber}
+                onChange={(e) => handelData(e)}
+              />
+            </div>
             {errors.phoneNumber && (
               <p className={style.errors}>{errors.phoneNumber}</p>
             )}
           </div>
+
           <button
             type="submit"
             className={style.public}
@@ -3192,8 +3172,69 @@ export default function CreatePublic() {
           >
             Publicar
           </button>
+
+          <div className={style.contentInputLocation}>
+            <label htmlFor="">Lugar donde ofreces este servicio</label>
+            <select className={style.selectsLocations}>
+              <option value="">Pais</option>
+              {countries.map((county) => (
+                <option
+                  key={county.id}
+                  id={county.id}
+                  onClick={(e) =>
+                    setInfoOfLocation({
+                      ...infoOfLocation,
+                      county: { name: e.target.value, id: e.target.id },
+                    })
+                  }
+                >
+                  {county.name}
+                </option>
+              ))}
+            </select>
+
+            <select
+              className={style.selectsLocations}
+              disabled={infoOfLocation.county === ""}
+            >
+              <option value="">Estado/provincia</option>
+              {filterStates.length > 0 &&
+                filterStates.map((state) => (
+                  <option
+                    key={state.id}
+                    id={state.id}
+                    onClick={(e) =>
+                      setInfoOfLocation({
+                        ...infoOfLocation,
+                        state: { name: e.target.value, id: e.target.id },
+                      })
+                    }
+                  >
+                    {state.name}
+                  </option>
+                ))}
+            </select>
+
+            <select
+              className={style.selectsLocations}
+              disabled={infoOfLocation.state === ""}
+            >
+              <option value="">Ciudad</option>
+              {filterCityes &&
+                filterCityes.map((city) => (
+                  <option key={city.id}> {city.name}</option>
+                ))}
+            </select>
+
+            {errors.location && (
+              <p className={style.errors}>{errors.location}</p>
+            )}
+          </div>
+          <div className={style.contentTextArea}>
+            <label htmlFor="">Detalles del servicio</label>
+            <textarea name="" id="" cols="30" rows="10"></textarea>
+          </div>
         </form>
-        <div>previsualizacion</div>
       </div>
     </div>
   );
