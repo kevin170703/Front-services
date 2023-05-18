@@ -7,8 +7,9 @@ import CardServices from "../CardServices/CardServices";
 import { useEffect } from "react";
 import { BiPencil } from "react-icons/bi";
 import { useState } from "react";
-import { BiLeftArrowAlt } from "react-icons/bi";
-import { CgProfile } from "react-icons/cg";
+import { CiCircleChevLeft } from "react-icons/ci";
+
+import { CiLocationOn, CiPhone, CiUser } from "react-icons/ci";
 
 export default function Profile() {
   const user = useSelector((state) => state.user);
@@ -53,56 +54,29 @@ export default function Profile() {
 
   return (
     <div className={style.contentAll}>
-      {/* <NavBar /> */}
+      <div className={style.backgroundCircle}></div>
       <NavLink to="/">
-        <BiLeftArrowAlt size="40" className={style.back} />
+        <CiCircleChevLeft size="40" className={style.back} />
       </NavLink>
       <div>
         <div className={style.contentInfo}>
           <div className={style.contentProfileInfo}>
-            <CgProfile size="30" className={style.imageProfile} />
+            <CiUser size="30" className={style.imageProfile} />
             <div className={style.contentInfoProfile}>
               <div className={style.contentUserName}>
                 <h5
                   className={style.nameUser}
                 >{`${user[0].name} ${user[0].lastName}`}</h5>
-
-                <BiPencil
-                  size="20"
-                  className={style.butonEdit}
-                  onClick={() => setViewEditForm(true)}
-                />
               </div>
-              <form
-                className={
-                  viewEditForm === true
-                    ? style.formUserName
-                    : style.formUserNameNone
-                }
-                onSubmit={(e) => handelEditProfile(e)}
-              >
-                <input
-                  type="text"
-                  name="newName"
-                  placeholder="Nuevo nombre"
-                  onChange={(e) => handelStateData(e)}
-                />
-                <input
-                  type="text"
-                  name="newLastname"
-                  placeholder="Nuevo apellido"
-                  onChange={(e) => handelStateData(e)}
-                />
-                <button type="submit">Guardar</button>
-              </form>
-              <p className={style.dataUser}>
-                Numero de telefono:{" "}
+
+              <div className={style.dataUser}>
+                <CiPhone size="30" />
                 <span className={style.data}>{user[0].phoneNumber}</span>
-              </p>
-              <p className={style.dataUser}>
-                Ubicacion:{" "}
+              </div>
+              <div className={style.dataUser}>
+                <CiLocationOn size="30" />
                 <span className={style.data}>{user[0].location}</span>
-              </p>
+              </div>
             </div>
 
             <button onClick={() => handelLogOut()} className={style.logOut}>
@@ -119,7 +93,7 @@ export default function Profile() {
           >
             <h6>Tus pulicaciones</h6>
             {!usersPosts.length ? (
-              <h4>Aún no tienes publicaciones subidas.</h4>
+              <h4>Aún no has publicando un servicio.</h4>
             ) : (
               usersPosts.map((element, index) => {
                 return (

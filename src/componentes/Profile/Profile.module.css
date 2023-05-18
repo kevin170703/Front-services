@@ -1,3 +1,10 @@
+.contentAll {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
 .contentImage {
   width: 100%;
   height: 200px;
@@ -5,11 +12,28 @@
   justify-content: center;
 }
 
+.backgroundCircle {
+  width: 50%;
+  top: -10%;
+  left: -15%;
+  height: 130%;
+  border-radius: 50%;
+  background: rgb(3, 218, 197);
+  background: linear-gradient(
+    0deg,
+    rgba(3, 218, 197, 0.8) 0%,
+    rgba(3, 218, 197, 0.9696078260405725) 100%
+  );
+  position: absolute;
+  box-shadow: -20px 0 40px rgba(0, 0, 0, 0.15);
+}
+
 .back {
   margin: 0.2rem 0 0 1rem;
   position: absolute;
   top: 0;
   left: 0;
+  color: #fff;
 }
 
 .contentInfo {
@@ -17,30 +41,22 @@
   align-items: center;
   justify-content: space-between;
   height: 100vh;
-  background: url("../../assets/wave-haikei.svg");
-  background-repeat: no-repeat;
-  background-size: 100%;
-  /* background: rgb(255, 255, 255);
-  background: linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 0.00042015097054448614) 0%,
-    rgba(123, 44, 191, 1) 83%
-  ); */
+  background-color: #fafafa;
 }
 
 .imageProfile {
   width: 250px;
   height: 250px;
-  border-radius: 50%;
 }
 
 .contentProfileInfo {
   text-align: start;
   padding: 0 0 0 4rem;
-  color: #fff;
   width: 400px;
   height: 400px;
   margin-top: 1rem;
+  z-index: 2;
+  color: #fff;
 }
 
 .contentUserName {
@@ -61,7 +77,12 @@
 .dataUser {
   margin: 0;
   font-size: 1.2rem;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  justify-content: flex-start;
 }
+
 .formUserNameNone {
   display: none;
 }
@@ -72,7 +93,6 @@
 
 .formUserName input {
   border-radius: 40px;
-  background-color: #fff;
   border: none;
   margin-right: 1rem;
   padding: 0.5rem;
@@ -80,14 +100,9 @@
 .formUserName button {
   border-radius: 40px;
   background-color: #7b2cbf;
-  color: #fff;
   padding: 0.5rem;
   border: none;
   margin-right: 1rem;
-}
-
-.data {
-  color: rgba(255, 255, 255, 0.8);
 }
 
 .contentPublics {
@@ -96,31 +111,32 @@
   padding-right: 1rem;
   width: 600px;
   height: 400px;
+  padding-right: 10%;
 }
 
 .contentPublicsNone {
   height: 400px;
-  padding-right: 1rem;
+  padding-right: 10%;
 }
 .contentPublics h6,
 .contentPublicsNone h6 {
-  color: #fff;
   font-size: 3rem;
   margin: 0;
   padding-bottom: 1rem;
+  color: #333;
 }
 
 .contentPublics h4,
 .contentPublicsNone h4 {
-  color: #fff;
-  border-bottom: 1px solid #999;
   font-size: 2rem;
+  color: #555;
 }
 
 .logOut {
   background-color: transparent;
-  border: 2px solid #000;
-  color: #000;
+  color: #fff;
+  background-color: #ff4081;
+  border: none;
   border-radius: 40px;
   font-size: 1rem;
   margin: 1rem 2rem 0 0;
