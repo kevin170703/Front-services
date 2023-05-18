@@ -20,6 +20,8 @@ export default function Home() {
   return (
     <div className={style.contentAll}>
       <NavBar services={true} />
+      <div className={style.backgroundCirclePrimary}></div>
+      <div className={style.backgroundCircleSecundary}></div>
       <div className={style.content}>
         <div className={style.contentPosts}>
           {!services.length ? (
@@ -30,8 +32,7 @@ export default function Home() {
           ) : (
             <div>
               <div className={style.filters}>
-                <select name="" id="">
-                  <option value="">Ubicacion</option>
+                <select>
                   <option value="">Ubicacion</option>
                 </select>
                 <select>

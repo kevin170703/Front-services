@@ -1,6 +1,28 @@
 .contentAll {
   background-color: #fafafa;
   min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.backgroundCirclePrimary {
+  width: 200px;
+  height: 200px;
+  background: #03dac5;
+  border-radius: 50%;
+  position: absolute;
+  top: 30%;
+  left: -120px;
+}
+
+.backgroundCircleSecundary {
+  width: 200px;
+  height: 200px;
+  background: #ff4081;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -100px;
+  right: -100px;
 }
 
 .content {
