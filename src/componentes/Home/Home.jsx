@@ -7,15 +7,27 @@ import style from "./Home.module.css";
 import NavBar from "../NavBar/NavBar";
 import DetailService from "../DetailService/DetailService";
 import { CiCircleAlert } from "react-icons/ci";
+import countries from "../../assets/countries.json";
 
 export default function Home() {
   const distpach = useDispatch();
   let services = useSelector((state) => state.posts);
   const [detailService, setDetailService] = useState();
+  const [loader, setLoader] = useState(true);
+
+  function filters(e) {
+    e.preventDefault();
+    services = services.filters(
+      (service) => service.location.country === e.target.value
+    );
+  }
 
   useEffect(() => {
-    distpach(getServices());
+    setLoader(true);
+    distpach(getServices()).then(() => setLoader(false));
   }, [distpach]);
+
+  if (loader) return <div className={style.loader}></div>;
 
   return (
     <div className={style.contentAll}>
@@ -31,21 +43,25 @@ export default function Home() {
             </div>
           ) : (
             <div>
-              <div className={style.filters}>
-                <select>
-                  <option value="">Ubicacion</option>
-                </select>
-                <select>
-                  <option value="">Tipo</option>
-                </select>
-              </div>
+              <form action="" className={style.filters}>
+                <input type="search" list="listCounties" placeholder="Pais" />
+
+                <datalist id="listCounties">
+                  {countries.map((country) => (
+                    <option value={country.name} key={country.id}>
+                      {country.name}
+                    </option>
+                  ))}
+                </datalist>
+                <button type="submit">Aplicar</button>
+              </form>
 
               {services.map((element, index) => (
                 <div onClick={() => setDetailService(element)}>
                   <CardServices
                     title={element.title}
                     servicesFor={element.nameUser}
-                    location={element.location}
+                    location={element.location.country}
                     price={element.rangePrice}
                     contact={element.phoneNumber}
                     type={"general"}
