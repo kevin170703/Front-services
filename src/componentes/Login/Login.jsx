@@ -9,7 +9,7 @@ import { CiCircleChevLeft } from "react-icons/ci";
 export default function Login() {
   const user = useSelector((state) => state.user);
   const distpach = useDispatch();
-  const [loginData, setLoginData] = useState({ password: "", phoneNumber: "" });
+  const [loginData, setLoginData] = useState({ password: "", email: "" });
 
   function handelLoginData(e) {
     e.preventDefault();
@@ -19,7 +19,7 @@ export default function Login() {
   function handelLoginSend(e) {
     e.preventDefault();
     distpach(login(loginData));
-    setLoginData({ password: "", phoneNumber: "" });
+    setLoginData({ password: "", email: "" });
   }
 
   return (
@@ -37,9 +37,9 @@ export default function Login() {
           <div className={style.contentInputs}>
             <input
               type="text"
-              name="phoneNumber"
-              placeholder="Numero de telefono"
-              value={loginData.phoneNumber}
+              name="email"
+              placeholder="Email"
+              value={loginData.email}
               onChange={(e) => handelLoginData(e)}
             />
           </div>
