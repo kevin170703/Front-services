@@ -3,6 +3,12 @@
   background: #fafafa;
   position: relative;
   overflow: hidden;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .backgroundCircle {
@@ -46,22 +52,19 @@
   color: #fafafa;
 }
 
-.content {
-  height: 100vh;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0 10rem;
+.contentAll h1 {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 5rem;
 }
 
-.content form {
+.contentAll form {
   height: 380px;
-  width: 85%;
+  width: 900px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: flex-start;
   column-gap: 2rem;
 }
@@ -91,13 +94,15 @@
 .contentInputLocation {
   display: flex;
   flex-wrap: wrap;
-  width: max-content;
+  width: 460px;
   height: 70px;
+  margin-bottom: 30px;
   column-gap: 1rem;
 }
 .contentInputLocation label {
   width: 100%;
-  margin-bottom: 0.2rem;
+  height: max-content;
+  margin-bottom: 0.5rem;
 }
 
 .selectsLocations {
@@ -175,6 +180,7 @@
 .contentTextArea textarea {
   width: 92%;
   height: 100%;
+  font-family: "Quicksand", sans-serif;
   outline: none;
   border: 1px solid #d3d0d0;
   border-radius: 30px;
@@ -186,7 +192,7 @@
   outline: 1px solid #03dac5;
 }
 
-.public {
+.buttonSendData {
   background: #03dac5;
   color: #fff;
   cursor: pointer;
@@ -196,6 +202,10 @@
   margin-top: 1rem;
   border: none;
   font-size: 1.2rem;
+}
+
+.buttonSendData:disabled {
+  background: #85cfc7;
 }
 
 .errors {

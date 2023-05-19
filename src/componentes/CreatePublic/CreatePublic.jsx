@@ -3027,31 +3027,32 @@ export default function CreatePublic() {
       tld: ".zw",
     },
   ];
-  const [infoOfLocation, setInfoOfLocation] = useState({
-    county: "",
-    state: "",
-    city: "",
-  });
-  const filterStates = states.filter(
-    (state) => state.id_country == infoOfLocation.county.id
-  );
-  const filterCityes = cities.filter(
-    (city) => city.id_state == infoOfLocation.state.id
-  );
-
   const { validateErrosNewService, errors } = useValidateErrors();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const [infoOfLocation, setInfoOfLocation] = useState({
+    country: "",
+    state: "",
+    city: "",
+  });
   const [dataForm, setDataForm] = useState({
     title: "",
     rangePriceOne: "",
     rangePriceTwo: "",
-    location: "",
+    location: {},
     idUser: user[0].id,
     nameUser: `${user[0].name} ${user[0].lastName}`,
     codePhoneNumber: "",
     phoneNumber: "",
+    detailsService: "",
   });
+
+  const filterStates = states.filter(
+    (state) => state.id_country == infoOfLocation.country.id
+  );
+  const filterCityes = cities.filter(
+    (city) => city.id_state == infoOfLocation.state.id
+  );
 
   function handelData(e) {
     e.preventDefault();
@@ -3059,34 +3060,40 @@ export default function CreatePublic() {
     validateErrosNewService({ ...dataForm, [e.target.name]: e.target.value });
   }
 
-  function handelCodeNumber(e) {
-    e.preventDefault();
-    setDataForm({ ...dataForm, codePhoneNumber: e.target.value });
-    validateErrosNewService({ ...dataForm, codePhoneNumber: e.target.value });
+  function updatalocation(e) {
+    setInfoOfLocation({
+      ...infoOfLocation,
+      [e.target.title]: { name: e.target.value, id: e.target.id },
+    });
+    setDataForm({
+      ...dataForm,
+      location: { ...dataForm.location, [e.target.title]: e.target.value },
+    });
+    validateErrosNewService({
+      ...dataForm,
+      location: { ...dataForm.location, [e.target.title]: e.target.value },
+    });
   }
 
   function handelsubmit(e) {
     e.preventDefault();
+    dispatch(createPost(dataForm));
+    setDataForm({
+      title: "",
+      rangePriceOne: "",
+      rangePriceTwo: "",
+      location: {},
+      idUser: user[0].id,
+      nameUser: `${user[0].name} ${user[0].lastName}`,
+      codePhoneNumber: "",
+      phoneNumber: "",
+      detailsService: "",
+    });
     Swal.fire({
       icon: "success",
       title: "Publicacion creada correctamente",
       width: "600",
     });
-    // dispatch(createPost(dataForm));
-    // setDataForm({
-    //   title: "",
-    //   rangePriceOne: "",
-    //   rangePriceTwo: "",
-    //   location: "",
-    //   idUser: user[0].id,
-    //   nameUser: `${user[0].name} ${user[0].lastName}`,
-    //   phoneNumber: "",
-    // });
-    // Swal.fire({
-    //   icon: "success",
-    //   title: "Publicacion creada correctamente",
-    //   width: "600",
-    // });
   }
 
   return (
@@ -3096,146 +3103,157 @@ export default function CreatePublic() {
       <NavLink to="/">
         <CiCircleChevLeft size="40" className={style.back} />
       </NavLink>
-      <div className={style.content}>
-        <form action="" onSubmit={(e) => handelsubmit(e)}>
-          <div className={style.contentInputTitle}>
-            <label htmlFor="">Titulo del servicio</label>
+      <h1>Crea tu servicio</h1>
+      <form action="" onSubmit={(e) => handelsubmit(e)}>
+        <div className={style.contentInputTitle}>
+          <label htmlFor="">Titulo del servicio</label>
+          <input
+            type="text"
+            name="title"
+            placeholder="Capintero, plomero..."
+            className={style.inputs}
+            value={dataForm.title}
+            onChange={(e) => handelData(e)}
+          />
+          {errors.title && <p className={style.errors}>{errors.title}</p>}
+        </div>
+
+        <div className={style.contentInputsRangePrice}>
+          <label htmlFor="">Rango de precio</label>
+          <div className={style.rangePrice}>
             <input
               type="text"
-              name="title"
-              placeholder="Capintero, plomero..."
-              className={style.inputs}
-              value={dataForm.title}
+              name="rangePriceOne"
+              placeholder="Rango de precio"
+              className={style.price}
+              value={dataForm.rangePriceOne}
               onChange={(e) => handelData(e)}
             />
-            {errors.title && <p className={style.errors}>{errors.title}</p>}
+            <p>a</p>
+            <input
+              type="text"
+              name="rangePriceTwo"
+              placeholder="Rango de precio "
+              className={style.price}
+              value={dataForm.rangePriceTwo}
+              onChange={(e) => handelData(e)}
+            />
           </div>
+          {errors.rangePrice && (
+            <p className={style.errors}>{errors.rangePrice}</p>
+          )}
+        </div>
 
-          <div className={style.contentInputsRangePrice}>
-            <label htmlFor="">Rango de precio</label>
-            <div className={style.rangePrice}>
-              <input
-                type="text"
-                name="rangePriceOne"
-                placeholder="Rango de precio"
-                className={style.price}
-                value={dataForm.rangePriceOne}
-                onChange={(e) => handelData(e)}
-              />
-              <p>a</p>
-              <input
-                type="text"
-                name="rangePriceTwo"
-                placeholder="Rango de precio "
-                className={style.price}
-                value={dataForm.rangePriceTwo}
-                onChange={(e) => handelData(e)}
-              />
-            </div>
-            {errors.rangePrice && (
-              <p className={style.errors}>{errors.rangePrice}</p>
-            )}
-          </div>
-          <div>
-            <label htmlFor="">Telefono de contacto</label>
-            <div className={style.contentInputsPhoneNumber}>
-              <select
-                className={style.inputPhoneCode}
-                onChange={(e) => handelCodeNumber(e)}
-              >
-                {codesCountries.map((element, index) => (
-                  <option
-                    key={index}
-                    value={element.dial_code}
-                  >{`${element.name_es} (+${element.dial_code})`}</option>
-                ))}
-              </select>
-
-              <input
-                type="text"
-                name="phoneNumber"
-                placeholder="xx-xxxx"
-                className={style.inputPhoneNumber}
-                value={dataForm.phoneNumber}
-                onChange={(e) => handelData(e)}
-              />
-            </div>
-            {errors.phoneNumber && (
-              <p className={style.errors}>{errors.phoneNumber}</p>
-            )}
-          </div>
-
-          <button
-            type="submit"
-            className={style.public}
-            disabled={errors.exist}
-          >
-            Publicar
-          </button>
-
-          <div className={style.contentInputLocation}>
-            <label htmlFor="">Lugar donde ofreces este servicio</label>
-            <select className={style.selectsLocations}>
-              <option value="">Pais</option>
-              {countries.map((county) => (
+        <div>
+          <label htmlFor="">Telefono de contacto</label>
+          <div className={style.contentInputsPhoneNumber}>
+            <select
+              className={style.inputPhoneCode}
+              onChange={(e) => handelData(e)}
+              name="codePhoneNumber"
+            >
+              {codesCountries.map((element, index) => (
                 <option
-                  key={county.id}
-                  id={county.id}
-                  onClick={(e) =>
-                    setInfoOfLocation({
-                      ...infoOfLocation,
-                      county: { name: e.target.value, id: e.target.id },
-                    })
-                  }
-                >
-                  {county.name}
-                </option>
+                  key={index}
+                  value={element.dial_code}
+                >{`${element.name_es} (+${element.dial_code})`}</option>
               ))}
             </select>
 
-            <select
-              className={style.selectsLocations}
-              disabled={infoOfLocation.county === ""}
-            >
-              <option value="">Estado/provincia</option>
-              {filterStates.length > 0 &&
-                filterStates.map((state) => (
-                  <option
-                    key={state.id}
-                    id={state.id}
-                    onClick={(e) =>
-                      setInfoOfLocation({
-                        ...infoOfLocation,
-                        state: { name: e.target.value, id: e.target.id },
-                      })
-                    }
-                  >
-                    {state.name}
-                  </option>
-                ))}
-            </select>
+            <input
+              type="text"
+              name="phoneNumber"
+              placeholder="xx-xxxx"
+              className={style.inputPhoneNumber}
+              value={dataForm.phoneNumber}
+              onChange={(e) => handelData(e)}
+            />
+          </div>
+          {errors.phoneNumber && (
+            <p className={style.errors}>{errors.phoneNumber}</p>
+          )}
+        </div>
 
-            <select
-              className={style.selectsLocations}
-              disabled={infoOfLocation.state === ""}
-            >
-              <option value="">Ciudad</option>
-              {filterCityes &&
-                filterCityes.map((city) => (
-                  <option key={city.id}> {city.name}</option>
-                ))}
-            </select>
+        <button
+          type="submit"
+          className={style.buttonSendData}
+          disabled={errors.exist}
+        >
+          Publicar
+        </button>
 
-            {errors.location && (
+        <div className={style.contentInputLocation}>
+          <label htmlFor="">Lugar donde ofreces este servicio</label>
+          <select className={style.selectsLocations}>
+            <option>Pais</option>
+            {countries.map((country) => (
+              <option
+                key={country.id}
+                id={country.id}
+                title="country"
+                onClick={(e) => updatalocation(e)}
+              >
+                {country.name}
+              </option>
+            ))}
+          </select>
+
+          <select
+            className={style.selectsLocations}
+            disabled={infoOfLocation.country === ""}
+          >
+            <option>Estado/provincia</option>
+            {filterStates.length > 0 &&
+              filterStates.map((state) => (
+                <option
+                  key={state.id}
+                  id={state.id}
+                  title="state"
+                  onClick={(e) => updatalocation(e)}
+                >
+                  {state.name}
+                </option>
+              ))}
+          </select>
+
+          <select
+            className={style.selectsLocations}
+            disabled={infoOfLocation.state === ""}
+          >
+            <option>Ciudad</option>
+            {filterCityes &&
+              filterCityes.map((city) => (
+                <option
+                  key={city.id}
+                  id={city.id}
+                  title="city"
+                  onClick={(e) => updatalocation(e)}
+                >
+                  {" "}
+                  {city.name}
+                </option>
+              ))}
+          </select>
+
+          {/* {errors.location && (
               <p className={style.errors}>{errors.location}</p>
-            )}
-          </div>
-          <div className={style.contentTextArea}>
-            <label htmlFor="">Detalles del servicio</label>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
-          </div>
-        </form>
-      </div>
+            )} */}
+        </div>
+
+        <div className={style.contentTextArea}>
+          <label htmlFor="">Detalles del servicio</label>
+          <textarea
+            name="detailsService"
+            onChange={(e) => handelData(e)}
+            value={dataForm.detailsService}
+            cols="30"
+            rows="10"
+          ></textarea>
+          {errors.detailsService && (
+            <p className={style.errors}>{errors.detailsService}</p>
+          )}
+        </div>
+      </form>
     </div>
   );
 }
