@@ -3045,7 +3045,7 @@ export default function Register() {
       name: "",
       lastName: "",
       password: "",
-      phoneNumber: "",
+      email: "",
       location: "",
     });
   }
@@ -3097,8 +3097,8 @@ export default function Register() {
           <div className={style.contentInputs}>
             <select name="location" onChange={(e) => handelLoginData(e)}>
               <option>Selecoina tu pais</option>
-              {paises.map((country) => (
-                <option value={country.name_es} key={country.tld}>
+              {paises.map((country, index) => (
+                <option value={country.name_es} key={index}>
                   {country.name_es}
                 </option>
               ))}
