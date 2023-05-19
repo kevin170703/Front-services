@@ -16,7 +16,9 @@ export default function DetailService({
 
       <div className={style.location}>
         <CiLocationOn size="30" />
-        <p>{location}</p>
+        <p>
+          {location.country}, {location.state}, {location.city}
+        </p>
       </div>
 
       <div className={style.contentInfoUser}>
