@@ -6,8 +6,13 @@ export function useValidateErrors() {
   const isFirstInputName = useRef(true);
   const isFirstInputLastName = useRef(true);
   const isFirstInputEmail = useRef(true);
-  const isFirstInputLocation = useRef(true);
   const isFirstInputPassword = useRef(true);
+
+  const isFirstInputTitle = useRef(true);
+  const isFirstInputRangePrice = useRef(true);
+  const isFirstInputCodePhoneNumber = useRef(true);
+  const isFirstInputPhoneNumber = useRef(true);
+  const isFirstInputDetailService = useRef(true);
 
   function validateErrors(dataUser) {
     let errors = {};
@@ -68,39 +73,60 @@ export function useValidateErrors() {
   function validateErrosNewService(dataServices) {
     let errors = {};
     const {
-      phoneNumber,
-      codePhoneNumber,
-      location,
+      title,
       rangePriceOne,
       rangePriceTwo,
-      title,
+      codePhoneNumber,
+      phoneNumber,
+      detailsService,
+      location,
     } = dataServices;
 
-    if (!phoneNumber)
+    if (isFirstInputTitle.current) {
+      errors.exist = true;
+      isFirstInputTitle.current = title === "";
+    } else if (title === "") {
+      errors.title = "Debes ingresar el titulo de tu publicacion";
+    } else if (title.length > 25) {
+      errors.title = "Maximo 26 caracteres";
+    } else if (!/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(title)) {
+      errors.title = "Ingrese un titulo valido";
+    }
+
+    if (isFirstInputRangePrice.current) {
+      errors.exist = true;
+      isFirstInputRangePrice.current =
+        rangePriceOne === "" && rangePriceTwo === "";
+    } else if (!rangePriceOne || !rangePriceTwo)
+      errors.rangePrice = "Debes ingresar el rago de precios";
+    else if (isNaN(rangePriceOne) || isNaN(rangePriceTwo))
+      errors.rangePrice = "Solo se permiten numeros";
+
+    if (isFirstInputPhoneNumber.current) {
+      errors.exist = true;
+      isFirstInputPhoneNumber.current = phoneNumber === "";
+    } else if (!phoneNumber)
       errors.phoneNumber = "Debes ingresar tu numero de telefono";
+    else if (!codePhoneNumber)
+      errors.phoneNumber = "Debes ingresar el codigo de su pais";
     else if (isNaN(phoneNumber))
       errors.phoneNumber = "Solo se permiten numeros";
     else if (phoneNumber.length < 9)
       errors.phoneNumber = "Debe ingresar un numero correcto";
 
-    if (!codePhoneNumber) errors.phoneNumber = "Debes ingresar su pais";
+    if (!location.country || !location.state || !location.city) {
+      errors.exist = true;
+    }
 
-    if (!location) errors.location = "Ingresar la cuidad";
-    else if (!/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(location))
-      errors.location = "Ingrese una cuidad valido";
+    if (isFirstInputDetailService.current) {
+      errors.exist = true;
+      isFirstInputDetailService.current = detailsService === "";
+    } else if (!detailsService)
+      errors.detailsService = "Ingrese los detalles del servicio";
+    else if (!/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(detailsService))
+      errors.detailsService = "Solo se permite texto";
 
-    if (!rangePriceOne || !rangePriceOne)
-      errors.rangePrice = "Debes ingresar el rago de precios";
-    else if (isNaN(rangePriceOne) || isNaN(rangePriceTwo))
-      errors.rangePrice = "Solo se permiten numeros";
-
-    if (title === "")
-      errors.title = "Debes ingresar el titulo de tu publicacion";
-    else if (title.length > 25) errors.title = "Maximo 26 caracteres";
-    else if (!/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(title))
-      errors.title = "Ingrese un titulo valido";
-
-    setErrors(errors);
+    setErrors({ ...errors, exist: Object.keys(errors).length > 0 });
   }
 
   return { validateErrors, validateErrosNewService, errors };
