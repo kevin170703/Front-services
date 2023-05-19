@@ -1,15 +1,14 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./Profile.module.css";
-import { logOut, getServices, editUser, updatedata } from "../../redux/actions";
+import { logOut, getServices, editUser } from "../../redux/actions";
 import { useNavigate, NavLink } from "react-router-dom";
 import CardServices from "../CardServices/CardServices";
 import { useEffect } from "react";
-import { BiPencil } from "react-icons/bi";
 import { useState } from "react";
 import { CiCircleChevLeft } from "react-icons/ci";
 
-import { CiLocationOn, CiPhone, CiUser } from "react-icons/ci";
+import { CiLocationOn, CiMail, CiUser } from "react-icons/ci";
 
 export default function Profile() {
   const user = useSelector((state) => state.user);
@@ -20,7 +19,6 @@ export default function Profile() {
 
   const dispatch = useDispatch();
   const navegate = useNavigate();
-  const [viewEditForm, setViewEditForm] = useState(false);
   const [dataEditUser, setDataEditUser] = useState({
     newName: "",
     newLastname: "",
@@ -43,12 +41,6 @@ export default function Profile() {
   }
 
   useEffect(() => {
-    dispatch(
-      updatedata({
-        phoneNumber: user[0].phoneNumber,
-        password: user[0].password,
-      })
-    );
     dispatch(getServices());
   }, [dispatch]);
 
@@ -70,8 +62,8 @@ export default function Profile() {
               </div>
 
               <div className={style.dataUser}>
-                <CiPhone size="30" />
-                <span className={style.data}>{user[0].phoneNumber}</span>
+                <CiMail size="30" />
+                <span className={style.data}>{user[0].email}</span>
               </div>
               <div className={style.dataUser}>
                 <CiLocationOn size="30" />
@@ -100,7 +92,7 @@ export default function Profile() {
                   <CardServices
                     title={element.title}
                     servicesFor={element.nameUser}
-                    location={element.location}
+                    location={element.location.country}
                     price={element.rangePrice}
                     contact={element.phoneNumber}
                     id={element.id}
