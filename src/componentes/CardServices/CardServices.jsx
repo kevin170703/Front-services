@@ -12,13 +12,12 @@ export default function CardServices({
   price,
   id,
   delate,
-  type,
 }) {
   const dispatch = useDispatch();
   const typeColor = {
-    insideHome: "#029CF5",
-    outsideHome: "#4FC45D",
-    general: "#E47E5E",
+    0: "#029CF5",
+    1: "#4FC45D",
+    2: "#E47E5E",
   };
 
   function handelDelatePost() {
@@ -27,11 +26,16 @@ export default function CardServices({
       window.location.reload(true);
     }, 1200);
   }
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
   return (
     <div className={style.content}>
       <div
         className={style.typeColor}
-        style={{ background: typeColor[type] }}
+        style={{ background: typeColor[getRandomInt(3)] }}
       ></div>
       <div className={style.contentInfo}>
         <h5 className={style.title}>{title}</h5>
