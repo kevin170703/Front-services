@@ -14,11 +14,14 @@ export default function Home() {
   let services = useSelector((state) => state.posts);
   const [detailService, setDetailService] = useState();
   const [loader, setLoader] = useState(true);
+  const [filters, setFilters] = useState({
+    country: "",
+  });
 
-  function filters(e) {
+  function sendFilters(e) {
     e.preventDefault();
-    services = services.filters(
-      (service) => service.location.country === e.target.value
+    services = services.filter(
+      (service) => service.location.country === filters.country
     );
   }
 
@@ -43,8 +46,14 @@ export default function Home() {
             </div>
           ) : (
             <div>
-              <form action="" className={style.filters}>
-                <input type="search" list="listCounties" placeholder="Pais" />
+              <form className={style.filters} onSubmit={(e) => sendFilters(e)}>
+                <input
+                  type="search"
+                  list="listCounties"
+                  placeholder="Pais"
+                  value={filters.country}
+                  onChange={(e) => setFilters({ country: e.target.value })}
+                />
 
                 <datalist id="listCounties">
                   {countries.map((country) => (
@@ -57,14 +66,13 @@ export default function Home() {
               </form>
 
               {services.map((element, index) => (
-                <div onClick={() => setDetailService(element)}>
+                <div onClick={() => setDetailService(element)} key={index}>
                   <CardServices
                     title={element.title}
                     servicesFor={element.nameUser}
                     location={element.location.country}
                     price={element.rangePrice}
                     contact={element.phoneNumber}
-                    type={"general"}
                     key={index}
                   />
                 </div>
