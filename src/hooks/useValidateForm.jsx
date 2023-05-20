@@ -78,7 +78,7 @@ export function useValidateErrors() {
       rangePriceTwo,
       codePhoneNumber,
       phoneNumber,
-      detailsService,
+      detail,
       location,
     } = dataServices;
 
@@ -120,11 +120,10 @@ export function useValidateErrors() {
 
     if (isFirstInputDetailService.current) {
       errors.exist = true;
-      isFirstInputDetailService.current = detailsService === "";
-    } else if (!detailsService)
-      errors.detailsService = "Ingrese los detalles del servicio";
-    else if (!/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(detailsService))
-      errors.detailsService = "Solo se permite texto";
+      isFirstInputDetailService.current = detail === "";
+    } else if (!detail) errors.detail = "Ingrese los detalles del servicio";
+    else if (!/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(detail))
+      errors.detail = "Solo se permite texto";
 
     setErrors({ ...errors, exist: Object.keys(errors).length > 0 });
   }
