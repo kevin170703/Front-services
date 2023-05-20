@@ -3044,7 +3044,7 @@ export default function CreatePublic() {
     nameUser: `${user[0].name} ${user[0].lastName}`,
     codePhoneNumber: "",
     phoneNumber: "",
-    detailsService: "",
+    detail: "",
   });
 
   const filterStates = states.filter(
@@ -3078,6 +3078,11 @@ export default function CreatePublic() {
   function handelsubmit(e) {
     e.preventDefault();
     dispatch(createPost(dataForm));
+    Swal.fire({
+      icon: "success",
+      title: "Publicacion creada correctamente",
+      width: "600",
+    });
     setDataForm({
       title: "",
       rangePriceOne: "",
@@ -3087,12 +3092,7 @@ export default function CreatePublic() {
       nameUser: `${user[0].name} ${user[0].lastName}`,
       codePhoneNumber: "",
       phoneNumber: "",
-      detailsService: "",
-    });
-    Swal.fire({
-      icon: "success",
-      title: "Publicacion creada correctamente",
-      width: "600",
+      detail: "",
     });
   }
 
@@ -3243,15 +3243,13 @@ export default function CreatePublic() {
         <div className={style.contentTextArea}>
           <label htmlFor="">Detalles del servicio</label>
           <textarea
-            name="detailsService"
+            name="detail"
             onChange={(e) => handelData(e)}
-            value={dataForm.detailsService}
+            value={dataForm.detail}
             cols="30"
             rows="10"
           ></textarea>
-          {errors.detailsService && (
-            <p className={style.errors}>{errors.detailsService}</p>
-          )}
+          {errors.detail && <p className={style.errors}>{errors.detail}</p>}
         </div>
       </form>
     </div>
