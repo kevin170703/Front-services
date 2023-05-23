@@ -3,6 +3,7 @@ import style from "./CardServices.module.css";
 import { FaMoneyBillWave } from "react-icons/fa";
 import { delatePost } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 export default function CardServices({
   title,
@@ -22,6 +23,12 @@ export default function CardServices({
 
   function handelDelatePost() {
     dispatch(delatePost({ idPost: id }));
+    Swal.fire({
+      icon: "success",
+      title: "Publicacion eliminada correctamente",
+      showConfirmButton: false,
+      width: "600",
+    });
     setTimeout(function () {
       window.location.reload(true);
     }, 1200);
