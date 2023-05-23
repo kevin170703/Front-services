@@ -1,16 +1,18 @@
 import React from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
 import style from "./NavBar.module.css";
-import { CiSearch } from "react-icons/ci";
+import Modal from "../Modal/Modal";
+import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { searchName } from "../../redux/actions";
-import { useState } from "react";
+
+import { CiSearch } from "react-icons/ci";
 import { HiBars3, HiXMark } from "react-icons/hi2";
-import Modal from "../Modal/Modal";
 import { CiUser } from "react-icons/ci";
 
 export default function Navbar({ landing, services }) {
   const user = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
   const [nameSearch, setNameSearch] = useState("");
   const [showMenuPhone, setShowMenuPhone] = useState(false);
