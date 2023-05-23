@@ -75,3 +75,14 @@
 .buttonRegister:hover {
   transform: scale(0.95);
 }
+
+@media (max-width: 600px) {
+  .toaster {
+    width: 70%;
+    height: max-content;
+  }
+
+  .toaster h5 {
+    font-size: 1.2rem;
+  }
+}
