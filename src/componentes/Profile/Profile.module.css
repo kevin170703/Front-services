@@ -151,7 +151,10 @@
     flex-direction: column;
     padding: 0;
     height: 100vh;
-    background-color: #7b2cbf;
+  }
+
+  .backgroundCircle {
+    display: none;
   }
   .contentProfileInfo {
     margin: 8rem 0 0 0;
@@ -172,10 +175,21 @@
     align-items: center;
   }
 
-  .logOut {
-    background-color: #fff;
-    border: none;
-    border: 1px solid #ddd;
-    margin-right: 1rem;
+  .contentPublics h4,
+  .contentPublicsNone h4 {
+    font-size: 2rem;
+    color: #fff;
+  }
+
+  .imageProfile {
+    color: #333;
+  }
+
+  .nameUser {
+    color: #333;
+  }
+
+  .dataUser {
+    color: #333;
   }
 }
