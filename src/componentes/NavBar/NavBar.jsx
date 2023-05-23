@@ -32,14 +32,19 @@ export default function Navbar({ landing, services }) {
         <HiBars3
           size="30"
           className={style.butonMenu}
-          style={{ display: showMenuPhone ? "none" : "flex" }}
+          style={{
+            display: showMenuPhone ? "none" : "flex",
+            color: services ? "#000" : "#fff",
+          }}
           onClick={() => setShowMenuPhone(true)}
         />
 
         <HiXMark
           size="30"
           className={style.butonMenu}
-          style={{ display: showMenuPhone ? "flex" : "none" }}
+          style={{
+            display: showMenuPhone ? "flex" : "none",
+          }}
           onClick={() => setShowMenuPhone(false)}
         />
       </div>
