@@ -159,4 +159,7 @@
   .image {
     display: none;
   }
+  .contentDetailService {
+    display: none;
+  }
 }
