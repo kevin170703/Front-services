@@ -143,6 +143,26 @@
   background: #85cfc7;
 }
 
+@media (max-width: 1100px) {
+  .backgroundCircle h2 {
+    font-size: 3rem;
+  }
+
+  .backgroundCircle p {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .backgroundCircle {
+    display: none;
+  }
+  .inputs {
+    width: 100%;
+    align-items: center;
+  }
+}
+
 @media (max-width: 600px) {
   .content {
     padding: 0;
