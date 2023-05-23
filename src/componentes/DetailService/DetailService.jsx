@@ -8,7 +8,7 @@ export default function DetailService({
   location,
   contact,
   price,
-  id,
+  details,
 }) {
   return (
     <div className={style.contentAll}>
@@ -32,12 +32,7 @@ export default function DetailService({
           <p>{price}</p>
         </div>
       </div>
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit pariatur
-        quos obcaecati ea quasi voluptatibus magni iure maxime error nisi,
-        quidem dolor quam. Aperiam eveniet optio nostrum corporis? Culpa,
-        quidem.
-      </p>
+      <p>{details}</p>
       <a
         href={`https://wa.me/${contact}`}
         target="_blank"
