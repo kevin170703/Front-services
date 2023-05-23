@@ -134,8 +134,8 @@ export function useValidateErrors() {
       errors.exist = true;
       isFirstInputDetailService.current = detail === "";
     } else if (!detail) errors.detail = "Ingrese los detalles del servicio";
-    else if (!/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(detail))
-      errors.detail = "Solo se permite texto";
+    else if (!/[a-z]+/gi.test(detail)) errors.detail = "Solo se permite texto";
+    else if (detail.length > 240) errors.detail = "El texto es muy largo";
 
     setErrors({ ...errors, exist: Object.keys(errors).length > 0 });
   }
