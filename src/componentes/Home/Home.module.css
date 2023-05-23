@@ -136,11 +136,24 @@
 }
 
 .contentDetailService {
-  width: 600px;
+  width: 30%;
+  display: flex;
   height: max-content;
   padding-top: 2rem;
   position: fixed;
-  right: 0;
+  right: 10%;
+}
+
+@media (max-width: 1200px) {
+  .contentDetailService {
+    right: 0;
+  }
+}
+
+@media (max-width: 1000px) {
+  .contentDetailService {
+    display: none;
+  }
 }
 
 @media (max-width: 600px) {
