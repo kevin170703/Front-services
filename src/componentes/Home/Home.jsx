@@ -8,29 +8,31 @@ import NavBar from "../NavBar/NavBar";
 import DetailService from "../DetailService/DetailService";
 import { CiCircleAlert } from "react-icons/ci";
 import countries from "../../assets/countries.json";
+import useFilters from "../../hooks/useFilters";
 
 export default function Home() {
-  const distpach = useDispatch();
-  let services = useSelector((state) => state.posts);
+  const dispatch = useDispatch();
+  const services = useSelector((state) => state.posts);
   const [detailService, setDetailService] = useState();
+  const { applyFilters, filters, setFilters } = useFilters();
   const [loader, setLoader] = useState(true);
-  const [filters, setFilters] = useState({
-    country: "",
-  });
-
-  function sendFilters(e) {
-    e.preventDefault();
-    services = services.filter(
-      (service) => service.location.country === filters.country
-    );
-  }
+  const renderDetail = detailService || services[0];
 
   useEffect(() => {
     setLoader(true);
-    distpach(getServices()).then(() => setLoader(false));
-  }, [distpach]);
+    dispatch(getServices()).then(() => setLoader(false));
+  }, [dispatch]);
 
-  if (loader) return <div className={style.loader}></div>;
+  useEffect(() => {
+    setDetailService(null);
+  }, [services]);
+
+  if (loader)
+    return (
+      <div className={style.contentLoader}>
+        <div className={style.loader}></div>
+      </div>
+    );
 
   return (
     <div className={style.contentAll}>
@@ -41,12 +43,12 @@ export default function Home() {
         <div className={style.contentPosts}>
           {!services.length ? (
             <div className={style.contentMessageNotServices}>
-              <h1>Aún no se publicaron servicios en la plataforma.</h1>
+              <h1>No se encontraron servicios.</h1>
               <CiCircleAlert className={style.logoInterrogation} size="120" />
             </div>
           ) : (
             <div>
-              <form className={style.filters} onSubmit={(e) => sendFilters(e)}>
+              <form className={style.filters} onSubmit={(e) => applyFilters(e)}>
                 <input
                   type="search"
                   list="listCounties"
@@ -64,32 +66,35 @@ export default function Home() {
                 </datalist>
                 <button type="submit">Aplicar</button>
               </form>
-
-              {services.map((element, index) => (
-                <div onClick={() => setDetailService(element)} key={index}>
-                  <CardServices
-                    title={element.title}
-                    servicesFor={element.nameUser}
-                    location={element.location.country}
-                    price={element.rangePrice}
-                    contact={element.phoneNumber}
-                    key={index}
-                  />
-                </div>
-              ))}
+              <div className={style.contentServices}>
+                {services.map((element, index) => (
+                  <div onClick={() => setDetailService(element)} key={index}>
+                    <CardServices
+                      title={element.title}
+                      servicesFor={element.nameUser}
+                      location={element.location.country}
+                      price={element.rangePrice}
+                      contact={element.phoneNumber}
+                      key={index}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </div>
-        {detailService && (
-          <DetailService
-            title={detailService.title}
-            servicesFor={detailService.nameUser}
-            location={detailService.location}
-            price={detailService.rangePrice}
-            contact={detailService.phoneNumber}
-            type={"general"}
-          />
-        )}
+        <div className={style.contentDetailService}>
+          {renderDetail && (
+            <DetailService
+              title={renderDetail.title}
+              servicesFor={renderDetail.nameUser}
+              location={renderDetail.location}
+              price={renderDetail.rangePrice}
+              contact={renderDetail.phoneNumber}
+              details={renderDetail.detail}
+            />
+          )}
+        </div>
       </div>
     </div>
   );
