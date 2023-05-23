@@ -151,7 +151,8 @@
     width: 100%;
     align-items: center;
   }
-  .fondo {
+
+  .backgroundCircle {
     display: none;
   }
 }
