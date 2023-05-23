@@ -17,6 +17,18 @@ export function useValidateErrors() {
   function validateErrors(dataUser) {
     let errors = {};
     const { name, lastName, email, location, password } = dataUser;
+    if (
+      name === "" &&
+      lastName === "" &&
+      email === "" &&
+      location === "" &&
+      password === ""
+    ) {
+      isFirstInputName.current = true;
+      isFirstInputLastName.current = true;
+      isFirstInputEmail.current = true;
+      isFirstInputPassword.current = true;
+    }
 
     const emailRegex =
       /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
