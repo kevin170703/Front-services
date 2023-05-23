@@ -1,13 +1,13 @@
 import React from "react";
 import style from "./Login.module.css";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { login } from "../../redux/actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { CiCircleChevLeft } from "react-icons/ci";
+import Swal from "sweetalert2";
 
 export default function Login() {
-  const user = useSelector((state) => state.user);
   const distpach = useDispatch();
   const [loginData, setLoginData] = useState({ password: "", email: "" });
 
@@ -16,10 +16,27 @@ export default function Login() {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   }
 
-  function handelLoginSend(e) {
+  async function handelLoginSend(e) {
     e.preventDefault();
-    distpach(login(loginData));
-    setLoginData({ password: "", email: "" });
+    const response = await distpach(login(loginData));
+    if (!response.payload) {
+      Swal.fire({
+        icon: response.type,
+        title: response.msj,
+        width: "600",
+        confirmButtonColor: "#ff4081",
+      });
+      return setLoginData({ password: "", email: "" });
+    }
+    Swal.fire({
+      icon: "success",
+      title: "Iniciaste sesión correctamente",
+      showConfirmButton: false,
+      width: "600",
+    });
+    setTimeout(function () {
+      window.location.href = "/";
+    }, 2000);
   }
 
   return (
