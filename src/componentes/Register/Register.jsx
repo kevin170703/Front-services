@@ -6,6 +6,7 @@ import { createAccount } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import { CiCircleChevLeft } from "react-icons/ci";
 import { useValidateErrors } from "../../hooks/useValidateForm";
+import Swal from "sweetalert2";
 
 export default function Register() {
   const dispatch = useDispatch();
@@ -3038,16 +3039,41 @@ export default function Register() {
     validateErrors({ ...dataRegister, [e.target.name]: e.target.value });
   }
 
-  function sendDataUser(e) {
+  async function sendDataUser(e) {
     e.preventDefault();
-    dispatch(createAccount(dataRegister));
-    setDataRegister({
-      name: "",
-      lastName: "",
-      password: "",
-      email: "",
-      location: "",
+    const response = await dispatch(createAccount(dataRegister));
+    if (!response.payload) {
+      Swal.fire({
+        icon: response.type,
+        title: response.msj,
+        width: "600",
+        confirmButtonColor: "#ff4081",
+      });
+      setDataRegister({
+        name: "",
+        lastName: "",
+        password: "",
+        email: "",
+        location: "",
+      });
+      return validateErrors({
+        name: "",
+        lastName: "",
+        password: "",
+        email: "",
+        location: "",
+      });
+    }
+
+    Swal.fire({
+      icon: "success",
+      title: "Cuenta creada correctamente",
+      showConfirmButton: false,
+      width: "600",
     });
+    setTimeout(function () {
+      window.location.href = "/";
+    }, 1500);
   }
 
   return (
