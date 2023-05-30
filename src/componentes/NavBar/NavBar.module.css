@@ -1,4 +1,4 @@
-.content {
+.contentMenu {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -97,6 +97,14 @@
   display: none;
 }
 
+.contentLinkProfile p,
+.logoCreateService,
+.logoHome,
+.logoLogin,
+.logoRegister {
+  display: none;
+}
+
 @media (max-width: 1000px) {
   .content {
     padding: 0 1rem;
@@ -124,18 +132,46 @@
 
   .contentVistPhone {
     display: flex;
+    align-items: flex-end;
     width: 100%;
-    height: 150px;
-    z-index: 1;
-    position: fixed;
-    flex-wrap: wrap;
     height: 100vh;
-    flex-direction: column-reverse;
-    align-items: center;
-    justify-content: center;
-    padding: 0 1rem;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(2px);
+    position: fixed;
+    z-index: 1;
+  }
+
+  .inicio {
+    gap: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .logoHome,
+  .logoCreateService,
+  .logoLogin,
+  .logoRegister {
+    display: block;
+    width: 30px;
+  }
+
+  .contentMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    background-color: #fff;
+    height: 70%;
+    width: 100%;
+    border-radius: 30px 30px 0 0;
+    padding: 20% 0 0 30px;
+    position: relative;
+  }
+
+  .form {
+    width: 80%;
+    position: absolute;
+    top: 20px;
+    left: 20px;
   }
 
   .navegationSec {
@@ -148,13 +184,45 @@
 
   .navegation {
     flex-direction: column;
+    align-items: flex-start;
     gap: 2rem;
     margin-top: 2rem;
     font-weight: bold;
+    font-size: 1.5rem;
   }
 
-  .publishServices {
-    color: #fff;
+  .publishServices,
+  .sesion,
+  .registerButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.5rem;
+    background-color: transparent;
+    color: #333;
+    padding: 0;
+  }
+
+  .contentLinkProfile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    gap: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .contentLinkProfile p {
+    display: block;
+  }
+
+  .logoProfile {
+    margin: 1rem 0;
+    width: 30px;
   }
 
   .butonMenu {
@@ -163,50 +231,15 @@
     z-index: 2;
     top: 10px;
     left: 10px;
-    color: #fff;
-  }
-
-  .searchBar {
-    width: 150px;
-  }
-
-  .searchBar input {
-    width: 80%;
-    font-size: 0.7rem;
+    color: #333;
   }
 
   .sesionAndPosts {
     width: 80%;
     flex-direction: column;
+    align-items: flex-start;
     margin-bottom: 2rem;
-  }
-
-  .sesion {
-    margin-bottom: 1rem;
-    color: #fff;
-    font-weight: bold;
-  }
-
-  .logoProfile {
-    margin: 1rem 0;
-    color: #fff;
-  }
-
-  .form {
-    border: 1px solid #fff;
-  }
-
-  .form input {
-    background-color: transparent;
-    border: none;
-    outline: none;
-    color: #fff;
-  }
-  .form input::placeholder {
-    color: #fff;
-  }
-
-  .form button {
-    color: #fff;
+    gap: 2rem;
+    margin-top: 2rem;
   }
 }
