@@ -154,8 +154,12 @@
   }
 
   .backgroundCircle {
-    display: none;
+    top: -35px;
+    left: -40px;
+    width: 120px;
+    height: 120px;
   }
+
   .contentProfileInfo {
     margin: 8rem 0 0 0;
     display: flex;
