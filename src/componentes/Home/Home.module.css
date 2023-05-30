@@ -77,45 +77,6 @@
   color: #222;
 }
 
-.filters {
-  display: flex;
-  gap: 1.5rem;
-  width: 100%;
-  margin-bottom: 2rem;
-}
-
-.filters input {
-  background-color: #fff;
-  border-radius: 30px;
-  width: 110px;
-  height: 30px;
-  border: none;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  border-right: 8px solid transparent;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.filters input:focus {
-  outline: 1px solid #03dac5;
-}
-
-.filters datalist {
-  background-color: red;
-}
-
-.filters button {
-  border: none;
-  background-color: #ff4081;
-  border-radius: 20px;
-  color: #fff;
-  padding: 0.2rem 1rem;
-  font-size: 1rem;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-}
-
 /* .contentServices {
   width: max-content;
   height: 75vh;
@@ -129,6 +90,7 @@
   align-items: center;
   justify-content: center;
   height: 80vh;
+  text-align: center;
 }
 
 .logoInterrogation {

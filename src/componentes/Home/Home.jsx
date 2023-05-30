@@ -7,14 +7,12 @@ import style from "./Home.module.css";
 import NavBar from "../NavBar/NavBar";
 import DetailService from "../DetailService/DetailService";
 import { CiCircleAlert } from "react-icons/ci";
-import countries from "../../assets/countries.json";
-import useFilters from "../../hooks/useFilters";
+import Filters from "../Filters/Filters";
 
 export default function Home() {
   const dispatch = useDispatch();
   const services = useSelector((state) => state.posts);
   const [detailService, setDetailService] = useState();
-  const { applyFilters, filters, setFilters } = useFilters();
   const [loader, setLoader] = useState(true);
   const renderDetail = detailService || services[0];
 
@@ -41,6 +39,7 @@ export default function Home() {
       <div className={style.backgroundCircleSecundary}></div>
       <div className={style.content}>
         <div className={style.contentPosts}>
+          <Filters />
           {!services.length ? (
             <div className={style.contentMessageNotServices}>
               <h1>No se encontraron servicios.</h1>
@@ -48,24 +47,6 @@ export default function Home() {
             </div>
           ) : (
             <div>
-              <form className={style.filters} onSubmit={(e) => applyFilters(e)}>
-                <input
-                  type="search"
-                  list="listCounties"
-                  placeholder="Pais"
-                  value={filters.country}
-                  onChange={(e) => setFilters({ country: e.target.value })}
-                />
-
-                <datalist id="listCounties">
-                  {countries.map((country) => (
-                    <option value={country.name} key={country.id}>
-                      {country.name}
-                    </option>
-                  ))}
-                </datalist>
-                <button type="submit">Aplicar</button>
-              </form>
               <div className={style.contentServices}>
                 {services.map((element, index) => (
                   <div onClick={() => setDetailService(element)} key={index}>
