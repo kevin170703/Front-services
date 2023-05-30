@@ -3078,6 +3078,7 @@ export default function Register() {
 
   return (
     <div className={style.contentAll}>
+      <div className={style.backgroundCircleSecundary}></div>
       <NavLink to="/">
         <CiCircleChevLeft size="40" className={style.back} />
       </NavLink>

@@ -42,12 +42,23 @@
   animation: aparecer 1.5s ease;
 }
 
+.backgroundCircleSecundary {
+  position: absolute;
+  top: -110px;
+  left: -110px;
+  background-color: #ff4081;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  animation: scale-up-top-left 0.7s 0.5s forwards;
+}
+
 .back {
   margin: 0.2rem 0 0 1rem;
   position: absolute;
   top: 0;
   left: 0;
-  color: #333;
+  color: #fff;
 }
 
 @keyframes aparecer {
