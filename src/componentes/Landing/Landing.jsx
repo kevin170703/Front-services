@@ -19,7 +19,7 @@ export default function Landing() {
       <div className={style.content}>
         <div className={style.contentText}>
           <h1>Services</h1>
-          <h5>Conectando Personas y Servicios</h5>
+          <h2>Conectando Personas y Servicios</h2>
           <Link to="/home" className={style.buttonServices}>
             Servicios
           </Link>
