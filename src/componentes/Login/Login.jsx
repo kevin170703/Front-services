@@ -41,6 +41,7 @@ export default function Login() {
 
   return (
     <div className={style.contentAll}>
+      <div className={style.backgroundCircleSecundary}></div>
       <NavLink to="/">
         <CiCircleChevLeft size="40" className={style.back} />
       </NavLink>
@@ -73,12 +74,10 @@ export default function Login() {
             iniciar sesion
           </button>
           <p>
-            ¿No tenes cuenta?{" "}
-            {
-              <NavLink to="/register" className={style.createAccount}>
-                Crear cuenta
-              </NavLink>
-            }
+            ¿No tienes una cuenta?{" "}
+            <NavLink to="/register" className={style.createAccount}>
+              Crear cuenta
+            </NavLink>
           </p>
         </form>
       </div>

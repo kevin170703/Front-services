@@ -6,6 +6,17 @@
   position: relative;
 }
 
+.backgroundCircleSecundary {
+  position: absolute;
+  top: -110px;
+  left: -110px;
+  background-color: #ff4081;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  animation: scale-up-top-left 0.7s 0.5s forwards;
+}
+
 .backgroundCircle {
   width: 60%;
   top: -10%;
@@ -47,7 +58,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  color: #333;
+  color: #fff;
 }
 
 @keyframes aparecer {
@@ -84,6 +95,7 @@
   border-radius: 20px;
   height: 50px;
   outline: none;
+  padding-left: 1rem;
 }
 
 .contentInputs input::placeholder {
