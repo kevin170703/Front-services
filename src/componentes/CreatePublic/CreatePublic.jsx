@@ -3144,7 +3144,7 @@ export default function CreatePublic() {
           )}
         </div>
 
-        <div>
+        <div className={style.contentPhoneNumber}>
           <label htmlFor="">Telefono de contacto</label>
           <div className={style.contentInputsPhoneNumber}>
             <select

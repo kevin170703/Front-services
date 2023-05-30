@@ -218,15 +218,53 @@
   .content {
     padding: 0;
   }
-  .content form {
-    width: 100%;
-    align-items: center;
-  }
-  .contentInputs {
-    align-items: center;
+  .contentAll h1 {
+    margin-bottom: 2rem;
   }
 
-  .fondo {
+  .backgroundCircle {
+    top: -50px;
+    left: -50px;
+    width: 120px;
+    height: 120px;
+  }
+
+  .contentAll {
+    padding: 0 0.2rem;
+  }
+
+  .contentAll form {
+    width: max-content;
+    height: 80vh;
+  }
+
+  .contentInputLocation {
+    flex-direction: column;
+    height: max-content;
+    gap: 1rem;
+    width: 360px;
+  }
+
+  .contentInputLocation label {
+    width: max-content;
+    margin: 0;
+  }
+
+  .backgroundCircleSecundary {
     display: none;
+  }
+
+  .contentPhoneNumber {
+    height: 90px;
+  }
+
+  .contentTextArea {
+    width: 350px;
+  }
+
+  .buttonSendData {
+    position: absolute;
+    bottom: 2rem;
+    left: 40%;
   }
 }
