@@ -115,13 +115,16 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+  .contentMenu {
+    padding: 0 2rem;
+  }
   .form {
     width: 120px;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .content {
     display: none;
   }

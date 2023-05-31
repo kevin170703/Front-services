@@ -69,10 +69,7 @@ export default function Navbar({ landing, services }) {
                 Publicar servicios
               </NavLink>
             ) : (
-              <NavLink
-                className={style.publishServices}
-                to="/createPublication"
-              >
+              <NavLink className={style.publishServices} to="/createService">
                 <CiCirclePlus className={style.logoCreateService} />
                 Publicar servicios
               </NavLink>
