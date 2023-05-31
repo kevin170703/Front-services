@@ -11,20 +11,18 @@ export default function Landing() {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <div className={style.contetAll}>
+    <header className={style.contetAll}>
       <Modal setShow={setShowModal} show={showModal} />
       <NavBar landing={true} />
       <div className={style.backgroundCircleSecundary}></div>
       <div className={style.backgroundCirclePrincipal}></div>
-      <div className={style.content}>
-        <div className={style.contentText}>
-          <h1>Services</h1>
-          <h2>Conectando Personas y Servicios</h2>
-          <Link to="/home" className={style.buttonServices}>
-            Servicios
-          </Link>
-        </div>
-      </div>
-    </div>
+      <section className={style.contentText}>
+        <h1>Services</h1>
+        <h2>Conectando Personas y Servicios</h2>
+        <Link to="/home" className={style.buttonServices}>
+          Servicios
+        </Link>
+      </section>
+    </header>
   );
 }
