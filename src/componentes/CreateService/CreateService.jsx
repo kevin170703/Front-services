@@ -3061,9 +3061,10 @@ export default function CreateService() {
   }
 
   function updatalocation(e) {
+    const id = e.target.options[event.target.selectedIndex].id;
     setInfoOfLocation({
       ...infoOfLocation,
-      [e.target.title]: { name: e.target.value, id: e.target.id },
+      [e.target.title]: { name: e.target.value, id: id },
     });
     setDataForm({
       ...dataForm,
@@ -3184,51 +3185,44 @@ export default function CreateService() {
 
         <div className={style.contentInputLocation}>
           <label htmlFor="">Lugar donde ofreces este servicio</label>
-          <select className={style.selectsLocations}>
+          <select
+            title="country"
+            onChange={(e) => updatalocation(e)}
+            className={style.selectsLocations}
+          >
             <option>Pais</option>
             {countries.map((country) => (
-              <option
-                key={country.id}
-                id={country.id}
-                title="country"
-                onClick={(e) => updatalocation(e)}
-              >
+              <option key={country.id} id={country.id} value={country.name}>
                 {country.name}
               </option>
             ))}
           </select>
 
           <select
+            onChange={(e) => updatalocation(e)}
             className={style.selectsLocations}
             disabled={infoOfLocation.country === ""}
+            title="state"
           >
             <option>Estado/provincia</option>
             {filterStates.length > 0 &&
               filterStates.map((state) => (
-                <option
-                  key={state.id}
-                  id={state.id}
-                  title="state"
-                  onClick={(e) => updatalocation(e)}
-                >
+                <option key={state.id} id={state.id} value={state.name}>
                   {state.name}
                 </option>
               ))}
           </select>
 
           <select
+            onChange={(e) => updatalocation(e)}
             className={style.selectsLocations}
             disabled={infoOfLocation.state === ""}
+            title="city"
           >
             <option>Ciudad</option>
             {filterCityes &&
               filterCityes.map((city) => (
-                <option
-                  key={city.id}
-                  id={city.id}
-                  title="city"
-                  onClick={(e) => updatalocation(e)}
-                >
+                <option key={city.id} id={city.id} value={city.name}>
                   {" "}
                   {city.name}
                 </option>
