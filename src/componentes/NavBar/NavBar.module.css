@@ -106,21 +106,28 @@
 }
 
 @media (max-width: 1000px) {
-  .content {
+  .contentMenu {
     padding: 0 1rem;
+  }
+}
+@media (max-width: 850px) {
+  .form {
+    width: 120px;
   }
 
   .form input {
     width: 80%;
   }
-}
 
-@media (max-width: 900px) {
-  .contentMenu {
-    padding: 0 2rem;
+  .navegation {
+    justify-content: flex-start;
+    gap: 1rem;
+    width: max-content;
   }
-  .form {
-    width: 120px;
+
+  .sesionAndPosts {
+    gap: 1rem;
+    width: max-content;
   }
 }
 
