@@ -1,5 +1,4 @@
 .contetAll {
-  /* background: url("../../assets/background.svg"); */
   background-position: top;
   background-repeat: no-repeat;
   height: 100vh;
@@ -17,8 +16,8 @@
   height: 200px;
   border-radius: 50%;
   z-index: -1;
-  /* animation: scale-up-top-left 0.7s 0.5s forwards; */
-  /* opacity: 0; */
+  animation: scale-up-top-left 0.7s 0.5s forwards;
+  opacity: 0;
 }
 
 @keyframes scale-up-top-left {
@@ -41,7 +40,7 @@
   width: 120%;
   height: 150%;
   border-radius: 50%;
-  /* animation: scale-up-bottom 0.5s; */
+  animation: scale-up-bottom 0.5s;
 }
 
 @keyframes scale-up-bottom {
@@ -80,7 +79,7 @@
   font-weight: bold;
   margin: 2rem 0 0 0;
   color: #333;
-  /* animation: tracking-in-expand-forward-top 0.4s linear both 0.5s; */
+  animation: tracking-in-expand-forward-top 0.4s linear both 0.5s;
 }
 
 @keyframes tracking-in-expand-forward-top {
@@ -103,7 +102,7 @@
   color: #607d8b;
   margin: 0;
   font-weight: 100;
-  /* animation: tracking-in-expand-forward-bottom 0.4s linear both 0.7s; */
+  animation: tracking-in-expand-forward-bottom 0.4s linear both 0.7s;
 }
 
 @keyframes tracking-in-expand-forward-bottom {
