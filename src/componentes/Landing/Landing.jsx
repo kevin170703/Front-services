@@ -1,13 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import NavBar from "../NavBar/NavBar";
 import style from "./Landing.module.css";
-import { useSelector } from "react-redux";
+import NavBar from "../NavBar/NavBar";
 import Modal from "../Modal/Modal";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
 export default function Landing() {
-  const user = useSelector((state) => state.user);
   const [showModal, setShowModal] = useState(false);
 
   return (
