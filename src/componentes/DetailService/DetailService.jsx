@@ -32,7 +32,7 @@ export default function DetailService({
           <p>{price}</p>
         </div>
       </div>
-      <p>{details}</p>
+      <p className={style.detailText}>{details}</p>
       <a
         href={`https://wa.me/${contact}`}
         target="_blank"

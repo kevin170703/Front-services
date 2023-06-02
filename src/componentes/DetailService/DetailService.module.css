@@ -1,6 +1,6 @@
 .contentAll {
   margin-top: 5%;
-  width: 60vw;
+  width: 400px;
   height: 80vh;
 }
 
@@ -37,6 +37,10 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
+}
+
+.detailText {
+  width: 100%;
 }
 
 .buttonContanct {
