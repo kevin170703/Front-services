@@ -22,7 +22,15 @@ export default function Filters() {
           </option>
         ))}
       </datalist>
-      <button type="submit">Aplicar</button>
+      <button type="submit" className={style.buttonSubmit}>
+        Aplicar
+      </button>
+      <button
+        className={style.buttonUndo}
+        onClick={() => setFilters({ country: "" })}
+      >
+        deshacer
+      </button>
     </form>
   );
 }
