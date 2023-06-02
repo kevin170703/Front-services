@@ -56,30 +56,35 @@
 }
 
 .contentDetailService {
-  width: 30%;
+  width: max-content;
   display: flex;
   height: max-content;
-  padding-top: 2rem;
+  padding-top: 5rem;
   position: fixed;
   right: 10%;
 }
 
 @media (max-width: 1200px) {
   .contentDetailService {
-    right: 0;
+    right: 0.2rem;
+  }
+  .content {
+    padding: 0 1rem;
+    justify-content: space-between;
+  }
+
+  .contentPosts {
+    width: max-content;
   }
 }
 
 @media (max-width: 1000px) {
-  .content {
-    padding: 0;
-    justify-content: center;
-  }
   .contentDetailService {
     display: none;
   }
-  .contentPosts {
-    width: max-content;
+
+  .content {
+    justify-content: center;
   }
 }
 
