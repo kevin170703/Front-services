@@ -27,11 +27,15 @@
 
 .content {
   display: flex;
-  padding: 0 7rem;
 }
 
 .contentPosts {
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  column-gap: 5rem;
 }
 
 .contentPosts h1 {
@@ -56,29 +60,18 @@
 }
 
 .contentDetailService {
-  width: max-content;
+  width: 400px;
+  height: 50vh;
   display: flex;
-  height: max-content;
-  padding-top: 5rem;
-  position: fixed;
-  right: 10%;
 }
 
-@media (max-width: 1200px) {
-  .contentDetailService {
-    right: 0.2rem;
-  }
+@media (max-width: 1280px) {
   .content {
-    padding: 0 1rem;
-    justify-content: space-between;
-  }
-
-  .contentPosts {
-    width: max-content;
+    padding: 0rem;
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
   .contentDetailService {
     display: none;
   }

@@ -57,18 +57,18 @@ export default function Home() {
               ))}
             </div>
           )}
-        </div>
-        <div className={style.contentDetailService}>
-          {renderDetail && (
-            <DetailService
-              title={renderDetail.title}
-              servicesFor={renderDetail.nameUser}
-              location={renderDetail.location}
-              price={renderDetail.rangePrice}
-              contact={renderDetail.phoneNumber}
-              details={renderDetail.detail}
-            />
-          )}
+          <div className={style.contentDetailService}>
+            {renderDetail && (
+              <DetailService
+                title={renderDetail.title}
+                servicesFor={renderDetail.nameUser}
+                location={renderDetail.location}
+                price={renderDetail.rangePrice}
+                contact={renderDetail.phoneNumber}
+                details={renderDetail.detail}
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>
