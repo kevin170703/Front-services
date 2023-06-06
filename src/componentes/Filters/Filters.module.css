@@ -1,12 +1,19 @@
 .filters {
   display: flex;
-  gap: 1.5rem;
-  width: 90%;
+  justify-content: center;
+  width: 100%;
+  max-height: 60px;
   padding: 1rem 0;
   margin-bottom: 2rem;
 }
 
-.filters input {
+.form {
+  display: flex;
+  gap: 1rem;
+  width: 1050px;
+}
+
+.form input {
   background-color: #fff;
   border-radius: 30px;
   width: 110px;
@@ -19,11 +26,11 @@
   cursor: pointer;
 }
 
-.filters input:focus {
+.form input:focus {
   outline: 1px solid #03dac5;
 }
 
-.filters datalist {
+.form datalist {
   background-color: red;
 }
 
@@ -47,9 +54,14 @@
   font-size: 1rem;
   cursor: pointer;
 }
+@media (max-width: 1100px) {
+  .form {
+    width: 550px;
+  }
+}
 
 @media (max-width: 600px) {
-  .filters {
+  .form {
     width: 70%;
   }
 
